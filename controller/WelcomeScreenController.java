@@ -4,8 +4,6 @@ import fxapp.MainFXApplication;
 
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Alert;
-
 /**
  * The controller for the root/main window
  *
@@ -17,39 +15,43 @@ public class WelcomeScreenController {
 
     /**
      * allow for calling back to the main application code if necessary
-     * @param main   the reference to the FX Application instance
+     * @param main the reference to the FX Application instance
      * */
     public void setMainApp(MainFXApplication main) {
         mainApplication = main;
     }
 
+    @FXMl
+    private MenuBar menuBar;
+
     @FXML
-    private TitledPane screen;
+    private Menu menu;
+
+    @FXML
+    private MenuItem view;
+
+    @FXMl
+    private MenuItem submit;
 
     @FXML
     private Button logout;
 
-    /**
-     * Close menu item event handler
-     */
     @FXML
-    private void handleCloseMenu() {
-        System.exit(0);
-
+    private void handleLogOut() {
+        Stage stage;
+        Parent root;
+        stage = (Stage) logout.getScene();
+        root = FXMLLoder.load(getClass().getResource("MainScreen.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    /**
-     * About menu item event handler
-     */
-    @FXML
-    private void handleAboutMenu() {
+    private void handleMenuItem() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("M3 Individual Project");
-        alert.setHeaderText("About");
-        alert.setContentText("Student Registration with code from Marco Jakob\nWebsite: http://code.makery.ch");
-
+        alert.setTitle("Option unavailable");
+        alert.setContentText("This option is not available at this time.");
         alert.showAndWait();
-
     }
 
 }
