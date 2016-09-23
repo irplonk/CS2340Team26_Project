@@ -14,21 +14,16 @@ import javafx.fxml.FXMLLoader;
 
 
 /**
- * The controller for the root/main window
- *
+ * The controller for the welcome screen
+ * Created by Isabella on 9/23/16
+ * @version 1.0
  */
 public class WelcomeScreenController {
 
     /** reference back to mainApplication if needed */
     private MainFXApplication mainApplication;
 
-    /**
-     * allow for calling back to the main application code if necessary
-     * @param main the reference to the FX Application instance
-     * */
-    public void setMainApp(MainFXApplication main) {
-        mainApplication = main;
-    }
+    private Stage welcomeStage;
 
     @FXML
     private MenuBar menuBar;
@@ -45,6 +40,23 @@ public class WelcomeScreenController {
     @FXML
     private Button logout;
 
+    /**
+     * allow for calling back to the main application code if necessary
+     * @param main the reference to the FX Application instance
+     * */
+    public void setMainApp(MainFXApplication main) {
+        mainApplication = main;
+    }
+
+    /**
+     * Sets up welcome screen stage
+     * @param welcomeStage sets the strage for this dialog
+     */
+    public void setWelcomeStage(Stage welcomeStage) {this.welcomeStage = welcomeStage};
+
+    /**
+     * Called when user clicks logout
+     */
     @FXML
     private void handleLogOut() {
         Stage stage;
@@ -56,6 +68,10 @@ public class WelcomeScreenController {
         stage.show();
     }
 
+    /**
+     * Called when user clicks on a menu item
+     */
+    @FXML
     private void handleMenuItem() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Option unavailable");
