@@ -1,8 +1,17 @@
 package controller;
 
 import fxapp.MainFXApplication;
-
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
+import javafx.scene.Scene;
+import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
+
 
 /**
  * The controller for the root/main window
@@ -21,7 +30,7 @@ public class WelcomeScreenController {
         mainApplication = main;
     }
 
-    @FXMl
+    @FXML
     private MenuBar menuBar;
 
     @FXML
@@ -30,7 +39,7 @@ public class WelcomeScreenController {
     @FXML
     private MenuItem view;
 
-    @FXMl
+    @FXML
     private MenuItem submit;
 
     @FXML
@@ -41,7 +50,7 @@ public class WelcomeScreenController {
         Stage stage;
         Parent root;
         stage = (Stage) logout.getScene();
-        root = FXMLLoder.load(getClass().getResource("MainScreen.fxml"));
+        root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
