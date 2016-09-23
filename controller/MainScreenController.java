@@ -38,12 +38,39 @@ public class MainScreenController {
     @FXML
     private void handleAboutMenu() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("M3 Individual Project");
+        alert.setTitle("M4 Main Screen");
         alert.setHeaderText("About");
-        alert.setContentText("Student Registration with code from Marco Jakob\nWebsite: http://code.makery.ch");
+        alert.setContentText("Login & Registration buttons");
 
         alert.showAndWait();
 
     }
 
+
+    /**
+     * Button handler for login button
+     */
+    @FXML
+    public void loginPressed() {
+        mainApplication.showLoginScreen();
+
+    }
+
+
+    /**
+     * Button handler for registration
+     * Currently not implemented
+     */
+    @FXML
+    public void registerPressed() {
+        // Show the error message if bad data
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initOwner(mainApplication.getMainScreen());
+        alert.setTitle("Unimplemented");
+        alert.setHeaderText("Unimplemented Feature");
+        alert.setContentText("Sorry, Register is not yet implemented!");
+
+        alert.showAndWait();
+
+    }
 }

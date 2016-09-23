@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
    <children>
       <Text layoutX="141.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID:">
          <font>
@@ -26,7 +26,7 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <Button layoutX="180.0" layoutY="227.0" mnemonicParsing="false" text="Login" textAlignment="CENTER" />
-      <Button layoutX="287.0" layoutY="227.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="180.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleLoginPressed" text="Login" textAlignment="CENTER" />
+      <Button layoutX="287.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
    </children>
 </Pane>

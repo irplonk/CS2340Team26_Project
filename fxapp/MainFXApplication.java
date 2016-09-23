@@ -2,12 +2,16 @@ package fxapp;
 
 
 import controller.MainScreenController;
+import controller.LoginScreenController;
+import controller.WelcomeScreenController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,7 +39,6 @@ public class MainFXApplication extends Application {
     public void start(Stage primaryStage) {
         mainScreen = primaryStage;
         initRootLayout(mainScreen);
-        //showCourseOverview(mainScreen);
     }
 
     /**
@@ -62,13 +65,12 @@ public class MainFXApplication extends Application {
             controller.setMainApp(this);
 
             // Set the Main App title
-            mainScreen.setTitle("Course Registration");
+            mainScreen.setTitle("Clean Water Crowdsourcing");
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             mainScreen.setScene(scene);
             mainScreen.show();
-
 
         } catch (IOException e) {
             //error on load, so log it
@@ -79,33 +81,73 @@ public class MainFXApplication extends Application {
 
 
     /**
-     * Setup our default application view that is shown on application startup
-     * This is displayed in the startup window
+     * Opens a dialog to login
      *
-     * precondition - the main stage is already initialized and showing (initRootLayout has been called)
-     * postcondition - the view is initialized and displayed
-     *
-     * @param mainScreen  the main stage to show this view in
      */
-    private void showCourseOverview(Stage mainScreen) {
+    public void showLoginScreen() {
         try {
-            // Load course overview.
+            // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApplication.class.getResource("../view/CourseOverview.fxml"));
-            AnchorPane courseOverview = loader.load();
+            loader.setLocation(MainFXApplication.class.getResource("../view/LoginScreen.fxml"));
+            Pane page = loader.load();
 
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(courseOverview);
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Login");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
 
+            // Set the stage into the controller.
+            LoginScreenController controller = loader.getController();
+            controller.setLoginStage(dialogStage);
+            controller.setMainApp(this);
 
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
 
         } catch (IOException e) {
-            //error on load, so log it
-            LOGGER.log(Level.SEVERE, "Failed to find the fxml file for CourseOverview!!");
             e.printStackTrace();
         }
-
     }
+
+    /**
+     * Opens a dialog to edit details for the specified student. If the user
+     * clicks OK, the changes are saved into the provided person object and true
+     * is returned.
+     *
+     * We can also open the dialog to add a completely new student if we pass null in
+     *
+     */
+    public void showWelcomeScreen() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/WelcomeScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Welcome!");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the stage into the controller.
+            WelcomeScreenController controller = loader.getController();
+            controller.setWelcomeStage(dialogStage);
+            controller.setMainApp(this);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public static void main(String[] args) {

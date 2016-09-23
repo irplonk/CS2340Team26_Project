@@ -26,18 +26,6 @@ public class WelcomeScreenController {
     private Stage welcomeStage;
 
     @FXML
-    private MenuBar menuBar;
-
-    @FXML
-    private Menu menu;
-
-    @FXML
-    private MenuItem view;
-
-    @FXML
-    private MenuItem submit;
-
-    @FXML
     private Button logout;
 
     /**
@@ -52,31 +40,13 @@ public class WelcomeScreenController {
      * Sets up welcome screen stage
      * @param welcomeStage sets the strage for this dialog
      */
-    public void setWelcomeStage(Stage welcomeStage) {this.welcomeStage = welcomeStage};
+    public void setWelcomeStage(Stage welcomeStage) {this.welcomeStage = welcomeStage;};
 
     /**
      * Called when user clicks logout
      */
     @FXML
-    private void handleLogOut() {
-        Stage stage;
-        Parent root;
-        stage = (Stage) logout.getScene();
-        root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    private void handleLogout() {
+        welcomeStage.close();
     }
-
-    /**
-     * Called when user clicks on a menu item
-     */
-    @FXML
-    private void handleMenuItem() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Option unavailable");
-        alert.setContentText("This option is not available at this time.");
-        alert.showAndWait();
-    }
-
 }

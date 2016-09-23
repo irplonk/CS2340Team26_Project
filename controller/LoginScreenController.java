@@ -13,6 +13,9 @@ import javafx.scene.control.Alert;
  */
 public class LoginScreenController {
 
+    /** reference back to mainApplication if needed */
+    private MainFXApplication mainApplication;
+
     private Stage loginStage;
 
     @FXML
@@ -32,6 +35,16 @@ public class LoginScreenController {
     }
 
     /**
+     * Setup the main application link so we can call methods there
+     *
+     * @param mainFXApplication  a reference (link) to our main class
+     */
+    public void setMainApp(MainFXApplication mainFXApplication) {
+
+        mainApplication = mainFXApplication;
+    }
+
+    /**
      * Called when the user clicks cancel.
      */
     @FXML
@@ -43,9 +56,10 @@ public class LoginScreenController {
      * Called when user clicks login.
      */
     @FXML
-    private void handleLoginPressed() {
+    public void handleLoginPressed() {
         if (isInputValid()) {
             if (checkUserInfo()) {
+                mainApplication.showWelcomeScreen();
                 loginStage.close();
                 isClicked = true;
             }
@@ -64,7 +78,7 @@ public class LoginScreenController {
      * Checks userID and password entered by user.
      */
     private boolean checkUserInfo() {
-        if (userID.getText().equals("user") && password.getText().equals("password")) {
+        if (userID.getText().equals("user") && password.getText().equals("pass")) {
             return true;
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
