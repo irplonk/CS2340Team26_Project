@@ -4,6 +4,7 @@ package fxapp;
 import controller.MainScreenController;
 import controller.LoginScreenController;
 import controller.WelcomeScreenController;
+import controller.RegistrationScreenController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -138,6 +139,42 @@ public class MainFXApplication extends Application {
             // Set the stage into the controller.
             WelcomeScreenController controller = loader.getController();
             controller.setWelcomeStage(dialogStage);
+            controller.setMainApp(this);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Opens a dialog to edit details for the specified student. If the user
+     * clicks OK, the changes are saved into the provided person object and true
+     * is returned.
+     *
+     * We can also open the dialog to add a completely new student if we pass null in
+     *
+     */
+    public void showRegistrationScreen() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/RegistrationScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Create an Account");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the stage into the controller.
+            RegistrationScreenController controller = loader.getController();
+            controller.setRegistrationStage(dialogStage);
             controller.setMainApp(this);
 
             // Show the dialog and wait until the user closes it

@@ -97,10 +97,10 @@ public class LoginScreenController {
         String errorMessage = "";
 
         //for now just check they actually typed something
-        if (userID.getText() == null || password.getText().length() == 0) {
+        if (userID.getText() == null || userID.getText().length() == 0) {
             errorMessage += "Not a valid username!\n";
         }
-        if (userID.getText() == null || password.getText().length() == 0) {
+        if (password.getText() == null || password.getText().length() == 0) {
             errorMessage += "Not a valid password!\n";
         }
 

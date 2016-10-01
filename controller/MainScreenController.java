@@ -56,6 +56,14 @@ public class MainScreenController {
 
     }
 
+    /**
+     * Button handler for login button
+     */
+    @FXML
+    public void createAccountPressed() {
+        mainApplication.showRegistrationScreen();
+    }
+
 
     /**
      * Button handler for registration
