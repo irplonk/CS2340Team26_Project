@@ -101,7 +101,6 @@ public class RegistrationScreenController {
                     break;
             }
             registrationStage.close();
-            mainApplication.showLoginScreen();
         }
     }
 
