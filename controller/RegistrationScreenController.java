@@ -49,7 +49,7 @@ public class RegistrationScreenController {
     private AuthorizedUser user;
 
     /**
-     * called automatically after load
+     * Called automatically after load
      */
     @FXML
     private void initialize() {
@@ -59,7 +59,7 @@ public class RegistrationScreenController {
 
 
     /**
-     * allow for calling back to the main application code if necessary
+     * Allow for calling back to the main application code if necessary
      * @param main the reference to the FX Application instance
      * */
     public void setMainApp(MainFXApplication main) {
@@ -67,7 +67,7 @@ public class RegistrationScreenController {
     }
 
     /**
-     * Sets up welcome screen stage
+     * Sets up registration screen stage
      * @param registrationStage sets the strage for this dialog
      */
     public void setRegistrationStage(Stage registrationStage) {this.registrationStage = registrationStage;};
@@ -125,8 +125,6 @@ public class RegistrationScreenController {
         if (firstName.getText() == null || firstName.getText().length() == 0) {
             errorMessage += "Not a valid first name!\n";
         }
-
-
 
         // No error message means good input
         if (errorMessage.length() == 0) {

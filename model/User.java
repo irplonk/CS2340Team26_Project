@@ -5,6 +5,12 @@ package model;
  */
 public class User extends AuthorizedUser {
 
+    /**
+     * Constructor for User object
+     * @param name last name, first name of the Worker
+     * @param id username of the Worker
+     * @param password password of the Worker
+     */
     public User(String name, String id, String password) {
         this.name = name;
         this.id = id;
