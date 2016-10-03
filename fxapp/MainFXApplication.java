@@ -186,6 +186,9 @@ public class MainFXApplication extends Application {
         }
     }
 
+    /**
+    * Displays profile page
+     */
     public void showProfileScreen() {
 
         try {
@@ -196,7 +199,7 @@ public class MainFXApplication extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Login");
+            dialogStage.setTitle("");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(mainScreen);
             Scene scene = new Scene(page);
@@ -216,6 +219,7 @@ public class MainFXApplication extends Application {
             emailCol.setMinWidth(200);
             emailCol.setCellValueFactory(
                     new PropertyValueFactory<AuthorizedUser, String>("email"));
+
 
 
             final VBox vbox = new VBox();

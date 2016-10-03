@@ -28,6 +28,9 @@ public class WelcomeScreenController {
     @FXML
     private Button logout;
 
+    @FXML
+    private Button editProfile;
+
     /**
      * allow for calling back to the main application code if necessary
      * @param main the reference to the FX Application instance
@@ -48,5 +51,13 @@ public class WelcomeScreenController {
     @FXML
     private void handleLogout() {
         welcomeStage.close();
+    }
+
+    /**
+     * Called when user clicks edit profile
+     */
+    @FXML
+    private void handleEditProfile() {
+        mainApplication.showProfileScreen();
     }
 }

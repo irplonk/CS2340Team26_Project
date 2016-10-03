@@ -23,10 +23,10 @@ public class ProfileScreenController {
 
     private Stage profileScreenStage;
 
-    private final ObservableList<AuthorizedUser> data =
-            FXCollections.observableArrayList(
-                    new AuthorizedUser("Jacob", "Smith", "jacob.smith@example.com"),
-            );
+    //private final ObservableList<AuthorizedUser> data =
+    //        FXCollections.observableArrayList(
+    //                new AuthorizedUser("Jacob", "Smith", "jacob.smith@example.com"),
+    //        );
 
 
 }
