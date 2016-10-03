@@ -150,12 +150,7 @@ public class MainFXApplication extends Application {
     }
 
     /**
-     * Opens a dialog to edit details for the specified student. If the user
-     * clicks OK, the changes are saved into the provided person object and true
-     * is returned.
-     *
-     * We can also open the dialog to add a completely new student if we pass null in
-     *
+     * Displays the registration screen
      */
     public void showRegistrationScreen() {
         try {

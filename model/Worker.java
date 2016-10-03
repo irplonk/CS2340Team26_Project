@@ -5,6 +5,12 @@ package model;
  */
 public class Worker extends User {
 
+    /**
+     * Constructor for Worker object
+     * @param name last name, first name of the Worker
+     * @param id username of the Worker
+     * @param password password of the Worker
+     */
     public Worker(String name, String id, String password) {
         super(name, id, password);
     }
