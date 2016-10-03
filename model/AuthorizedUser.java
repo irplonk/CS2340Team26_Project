@@ -2,6 +2,7 @@ package model;
 
 /**
  * Created by Isabella on 10/1/16.
+ * Edited by Shivani on 10/3/16.
  */
 public abstract class AuthorizedUser {
     protected String name;
