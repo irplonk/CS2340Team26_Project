@@ -25,7 +25,8 @@ public class User extends AuthorizedUser {
         //this.title = title;
     }
 
-    public void submitReport(WaterType type, WaterCondition condition) {
+    public void submitReport() {
+        //param is condition and type
         // code
         //this.WaterType = WaterType;
         //this.WaterCondition = WaterCondition;
