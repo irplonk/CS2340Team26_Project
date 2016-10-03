@@ -13,11 +13,17 @@ public class User extends AuthorizedUser {
     protected enum WaterCondition;
     protected static int counter = 0;
     protected int num = 0;
+    protected String emailaddress;
+    protected String homeaddress;
+    protected String title;
 
-    public User(String name, String id, String password) {
+    public User(String name, String id, String password, String emailaddress, String homeaddress, String title) {
         this.name = name;
         this.id = id;
         this.password = password;
+        this.emailaddress = emailaddress;
+        this.homeaddress = homeaddress;
+        this.title = title;
     }
 
     public void submitReport(WaterType, WaterCondition) {
