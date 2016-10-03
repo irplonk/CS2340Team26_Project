@@ -6,27 +6,43 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
     <children>
-        <Text layoutX="141.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID:">
+        <Text layoutX="154.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
             <font>
                 <Font size="16.0" />
             </font>
         </Text>
-        <Text layoutX="124.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+        <Text layoutX="177.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
             <font>
                 <Font size="16.0" />
             </font>
         </Text>
-        <TextField fx:id="userID" layoutX="217.0" layoutY="116.0" />
-        <TextField fx:id="password" layoutX="217.0" layoutY="167.0" />
-        <Text layoutX="169.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Login">
+        <TextField fx:id="userID" layoutX="217.0" layoutY="116.0" prefHeight="25.0" prefWidth="200.0" />
+        <TextField fx:id="password" layoutX="217.0" layoutY="148.0" prefHeight="25.0" prefWidth="200.0" />
+        <Text layoutX="184.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile">
             <font>
                 <Font size="36.0" />
             </font>
         </Text>
-        <Button layoutX="180.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleLoginPressed" text="Login" textAlignment="CENTER" />
-        <Button layoutX="287.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
+        <Button layoutX="249.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Save" />
+      <Text layoutX="100.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:" wrappingWidth="107.0989990234375">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="92.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home Address:" wrappingWidth="123.765625">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="166.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" wrappingWidth="40.503906425088644">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="userID1" layoutX="215.0" layoutY="183.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="userID11" layoutX="217.0" layoutY="217.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="userID111" layoutX="215.0" layoutY="250.0" prefHeight="25.0" prefWidth="200.0" />
     </children>
 </Pane>
