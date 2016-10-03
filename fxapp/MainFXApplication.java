@@ -220,6 +220,11 @@ public class MainFXApplication extends Application {
             emailCol.setCellValueFactory(
                     new PropertyValueFactory<AuthorizedUser, String>("email"));
 
+            TableColumn emailCol = new TableColumn("Home Address");
+            emailCol.setMinWidth(200);
+            emailCol.setCellValueFactory(
+                    new PropertyValueFactory<AuthorizedUser, String>("Home Address"));
+
 
 
             final VBox vbox = new VBox();
