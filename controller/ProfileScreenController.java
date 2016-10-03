@@ -3,7 +3,9 @@ package controller;
 import fxapp.MainFXApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.AuthorizedUser;
@@ -27,8 +29,17 @@ public class ProfileScreenController {
     //        FXCollections.observableArrayList(
     //                new AuthorizedUser("Jacob", "Smith", "jacob.smith@example.com"),
     //        );
+    private final ObservableList<AuthorizedUser> data = FXCollections.observableArrayList();
 
+    @FXML
+    private Button Save;
 
-
+    /**
+     * Called when user clicks Save
+     */
+    @FXML
+    public void handleSave() {
+        //data.add();
+    }
 
 }

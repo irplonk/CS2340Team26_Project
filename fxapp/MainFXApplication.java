@@ -205,32 +205,6 @@ public class MainFXApplication extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            TableColumn firstNameCol = new TableColumn("Name");
-            firstNameCol.setMinWidth(100);
-            firstNameCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("Name"));
-
-            TableColumn lastNameCol = new TableColumn("ID");
-            lastNameCol.setMinWidth(100);
-            lastNameCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("ID"));
-
-            TableColumn emailCol = new TableColumn("Email");
-            emailCol.setMinWidth(200);
-            emailCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("email"));
-
-            TableColumn emailCol = new TableColumn("Home Address");
-            emailCol.setMinWidth(200);
-            emailCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("Home Address"));
-
-
-
-            final VBox vbox = new VBox();
-            vbox.setSpacing(5);
-            //vbox.setPadding(new Insets(10, 0, 0, 10));
-
             // Set the stage into the controller.
             ProfileScreenController controller = loader.getController();
             //controller.setLoginStage(dialogStage);
@@ -238,6 +212,9 @@ public class MainFXApplication extends Application {
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
+            //Scene scene = new Scene(rootLayout);
+            mainScreen.setScene(scene);
+            mainScreen.show();
 
         } catch (IOException e) {
             e.printStackTrace();
