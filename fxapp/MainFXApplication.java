@@ -1,10 +1,10 @@
 package fxapp;
 
 
-import controller.MainScreenController;
-import controller.LoginScreenController;
-import controller.WelcomeScreenController;
-import controller.RegistrationScreenController;
+import controller.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import model.*;
 
 import javafx.application.Application;
@@ -186,7 +186,54 @@ public class MainFXApplication extends Application {
         }
     }
 
+    public void showProfileScreen() {
 
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/ProfileScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Login");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            TableColumn firstNameCol = new TableColumn("First Name");
+            firstNameCol.setMinWidth(100);
+            firstNameCol.setCellValueFactory(
+                    new PropertyValueFactory<AuthorizedUser, String>("firstName"));
+
+            TableColumn lastNameCol = new TableColumn("Last Name");
+            lastNameCol.setMinWidth(100);
+            lastNameCol.setCellValueFactory(
+                    new PropertyValueFactory<AuthorizedUser, String>("lastName"));
+
+            TableColumn emailCol = new TableColumn("Email");
+            emailCol.setMinWidth(200);
+            emailCol.setCellValueFactory(
+                    new PropertyValueFactory<AuthorizedUser, String>("email"));
+
+
+            final VBox vbox = new VBox();
+            vbox.setSpacing(5);
+            //vbox.setPadding(new Insets(10, 0, 0, 10));
+
+            // Set the stage into the controller.
+            ProfileScreenController controller = loader.getController();
+            //controller.setLoginStage(dialogStage);
+            //controller.setMainApp(this);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
