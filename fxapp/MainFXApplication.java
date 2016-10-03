@@ -199,21 +199,21 @@ public class MainFXApplication extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("");
+            dialogStage.setTitle("Your Profile");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(mainScreen);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            TableColumn firstNameCol = new TableColumn("First Name");
+            TableColumn firstNameCol = new TableColumn("Name");
             firstNameCol.setMinWidth(100);
             firstNameCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("firstName"));
+                    new PropertyValueFactory<AuthorizedUser, String>("Name"));
 
-            TableColumn lastNameCol = new TableColumn("Last Name");
+            TableColumn lastNameCol = new TableColumn("ID");
             lastNameCol.setMinWidth(100);
             lastNameCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("lastName"));
+                    new PropertyValueFactory<AuthorizedUser, String>("ID"));
 
             TableColumn emailCol = new TableColumn("Email");
             emailCol.setMinWidth(200);
