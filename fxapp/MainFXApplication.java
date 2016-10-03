@@ -5,6 +5,7 @@ import controller.MainScreenController;
 import controller.LoginScreenController;
 import controller.WelcomeScreenController;
 import controller.RegistrationScreenController;
+import model.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 
 
 /**
@@ -35,6 +37,8 @@ public class MainFXApplication extends Application {
 
     /** the main layout for the main window */
     private BorderPane rootLayout;
+
+    private ArrayList<AuthorizedUser> checkList;
 
     @Override
     public void start(Stage primaryStage) {
@@ -104,6 +108,7 @@ public class MainFXApplication extends Application {
             LoginScreenController controller = loader.getController();
             controller.setLoginStage(dialogStage);
             controller.setMainApp(this);
+            controller.setCheckList(checkList);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -171,6 +176,7 @@ public class MainFXApplication extends Application {
             RegistrationScreenController controller = loader.getController();
             controller.setRegistrationStage(dialogStage);
             controller.setMainApp(this);
+            checkList = controller.getUserList();
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
