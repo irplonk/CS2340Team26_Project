@@ -1,27 +1,25 @@
 package fxapp;
 
 
-import controller.*;
+import controller.MainScreenController;
+import controller.LoginScreenController;
+import controller.WelcomeScreenController;
+import controller.RegistrationScreenController;
+import model.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.AuthorizedUser;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 
 
 /**
@@ -39,6 +37,8 @@ public class MainFXApplication extends Application {
 
     /** the main layout for the main window */
     private BorderPane rootLayout;
+
+    private ArrayList<AuthorizedUser> checkList;
 
     @Override
     public void start(Stage primaryStage) {
@@ -108,6 +108,7 @@ public class MainFXApplication extends Application {
             LoginScreenController controller = loader.getController();
             controller.setLoginStage(dialogStage);
             controller.setMainApp(this);
+            controller.setCheckList(checkList);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -175,58 +176,7 @@ public class MainFXApplication extends Application {
             RegistrationScreenController controller = loader.getController();
             controller.setRegistrationStage(dialogStage);
             controller.setMainApp(this);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-    * Displays profile screen
-    */
-    public void showProfilePageScreen() {
-
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApplication.class.getResource("../view/ProfileScreen.fxml"));
-            Pane page = loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Login");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(mainScreen);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            TableColumn firstNameCol = new TableColumn("First Name");
-            firstNameCol.setMinWidth(100);
-            firstNameCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("firstName"));
-
-            TableColumn lastNameCol = new TableColumn("Last Name");
-            lastNameCol.setMinWidth(100);
-            lastNameCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("lastName"));
-
-            TableColumn emailCol = new TableColumn("Email");
-            emailCol.setMinWidth(200);
-            emailCol.setCellValueFactory(
-                    new PropertyValueFactory<AuthorizedUser, String>("email"));
-
-
-            final VBox vbox = new VBox();
-            vbox.setSpacing(5);
-            //vbox.setPadding(new Insets(10, 0, 0, 10));
-
-            // Set the stage into the controller.
-            ProfileScreenController controller = loader.getController();
-            //controller.setLoginStage(dialogStage);
-            //controller.setMainApp(this);
+            checkList = controller.getUserList();
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

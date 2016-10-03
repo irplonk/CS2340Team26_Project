@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.*;
+import java.util.ArrayList;
 
 /**
  * The controller for the registration screen
@@ -47,6 +48,8 @@ public class RegistrationScreenController {
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
     private AuthorizedUser user;
+
+    ArrayList<AuthorizedUser> authorizedUserList = new ArrayList<>();
 
     /**
      * Called automatically after load
@@ -99,7 +102,11 @@ public class RegistrationScreenController {
                 case "administrator":
                     user = new Administrator(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
                     break;
+                default:
+                    user = new User(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    break;
             }
+            authorizedUserList.add(user);
             registrationStage.close();
         }
     }
@@ -140,6 +147,10 @@ public class RegistrationScreenController {
 
             return false;
         }
+    }
+
+    public ArrayList<AuthorizedUser> getUserList() {
+        return authorizedUserList;
     }
 
     public void setUser(AuthorizedUser user) {

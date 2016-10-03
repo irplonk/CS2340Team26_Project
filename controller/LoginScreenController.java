@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
+import model.*;
+import java.util.ArrayList;
 
 
 /**
@@ -25,6 +27,12 @@ public class LoginScreenController {
     private TextField password;
 
     private boolean isClicked;
+
+    private ArrayList<AuthorizedUser> checkList;
+
+    public void setCheckList(ArrayList<AuthorizedUser> checkList) {
+        this.checkList = checkList;
+    }
 
     /**
      * Sets up login screen stage
@@ -78,15 +86,23 @@ public class LoginScreenController {
      * Checks userID and password entered by user.
      */
     private boolean checkUserInfo() {
-        if (userID.getText().equals("user") && password.getText().equals("pass")) {
-            return true;
-        } else {
+        boolean check = false;
+        if (checkList != null) {
+            for (int i = 0; i < checkList.size(); i++) {
+                if (userID.getText().equals(checkList.get(i).getID()) && password.getText().equals(checkList.get(i).getPassword())) {
+                    check = true;
+                }
+            }
+        }
+
+        if (!check) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Invalid Username and/or Password.");
             alert.setContentText("Entered Username and/or Password is incorrect.");
             alert.showAndWait();
-            return false;
+            return check;
         }
+        return check;
     }
 
     /**
