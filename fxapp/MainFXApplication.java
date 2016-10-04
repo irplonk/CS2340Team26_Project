@@ -207,8 +207,8 @@ public class MainFXApplication extends Application {
 
             // Set the stage into the controller.
             ProfileScreenController controller = loader.getController();
-            //controller.setLoginStage(dialogStage);
-            //controller.setMainApp(this);
+            controller.setProfileScreenStage(dialogStage);
+            controller.setMainApp(this);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

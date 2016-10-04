@@ -44,6 +44,21 @@ public class ProfileScreenController {
     //        );
     private final ObservableList<AuthorizedUser> data = FXCollections.observableArrayList();
 
+    /**
+     * allow for calling back to the main application code if necessary
+     * @param main the reference to the FX Application instance
+     * */
+    public void setMainApp(MainFXApplication main) {
+        mainApplication = main;
+    }
+
+
+    /**
+     * Sets up profile screen screen stage
+     * @param profileScreenStage sets the strage for this dialog
+     */
+    public void setProfileScreenStage(Stage profileScreenStage) {this.profileScreenStage = profileScreenStage;};
+
     @FXML
     private Button Save;
     /**
@@ -86,6 +101,7 @@ public class ProfileScreenController {
             return false;
         }
     }
+
     /**
      * Called when user clicks Save
      */
