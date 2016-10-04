@@ -62,6 +62,14 @@ public class ProfileScreenController {
     public void setProfileScreenStage(Stage profileScreenStage) {this.profileScreenStage = profileScreenStage;};
 
     /**
+     * Called when user clicks cancel
+     */
+    @FXML
+    public void handleCancel() {
+        profileScreenStage.close();
+    }
+
+    /**
      * Checks if the input is valid
      * @return returns true if input in all fields are valid
      */
