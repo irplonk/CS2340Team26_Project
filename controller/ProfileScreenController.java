@@ -66,6 +66,7 @@ public class ProfileScreenController {
         this.ID.setText(this.user.getID());
         this.EmailAddress.setText(this.user.getEmailaddress());
         this.HomeAddress.setText(this.user.getHomeaddress());
+        this.Title.setText(this.user.getTitle());
     };
 
     /**
@@ -134,7 +135,7 @@ public class ProfileScreenController {
             user.setEmailaddress(EmailAddress.getText());
             user.setHomeaddress(HomeAddress.getText());
             user.setTitle(Title.getText());
-            }
+        }
 
         profileScreenStage.close();
 
