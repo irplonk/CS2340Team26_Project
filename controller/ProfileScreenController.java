@@ -5,12 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.AuthorizedUser;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 /**
  * The controller for the profile page screen
@@ -25,6 +23,21 @@ public class ProfileScreenController {
 
     private Stage profileScreenStage;
 
+    @FXML
+    private TextField Name;
+
+    @FXML
+    private TextField ID;
+
+    @FXML
+    private TextField EmailAddress;
+
+    @FXML
+    private TextField HomeAddress;
+
+    @FXML
+    private TextField Title;
+
     //private final ObservableList<AuthorizedUser> data =
     //        FXCollections.observableArrayList(
     //                new AuthorizedUser("Jacob", "Smith", "jacob.smith@example.com"),
@@ -33,7 +46,46 @@ public class ProfileScreenController {
 
     @FXML
     private Button Save;
+    /**
+     * Checks if the input is valid
+     * @return returns true if input in both fields is valid
+     */
+    private boolean isInputValid() {
+        String errorMessage = "";
 
+        // Checks to see if the user typed something in all of the fields
+        if (Name.getText() == null || Name.getText().length() == 0) {
+            errorMessage += "Not a valid name!\n";
+        }
+        if (ID.getText() == null || ID.getText().length() == 0) {
+            errorMessage += "Not a valid ID!\n";
+        }
+        if (EmailAddress.getText() == null || EmailAddress.getText().length() == 0) {
+            errorMessage += "Not a valid last email address!\n";
+        }
+        if (HomeAddress.getText() == null || HomeAddress.getText().length() == 0) {
+            errorMessage += "Not a valid first home address!\n";
+        }
+        if (Title.getText() == null || Title.getText().length() == 0) {
+            errorMessage += "Not a valid Title! \n";
+        }
+
+        // No error message means good input
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            // Show the error message if bad data
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(profileScreenStage);
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+
+            alert.showAndWait();
+
+            return false;
+        }
+    }
     /**
      * Called when user clicks Save
      */

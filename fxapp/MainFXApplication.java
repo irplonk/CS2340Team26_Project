@@ -212,7 +212,7 @@ public class MainFXApplication extends Application {
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
-            //Scene scene = new Scene(rootLayout);
+            scene = new Scene(rootLayout);
             mainScreen.setScene(scene);
             mainScreen.show();
 
