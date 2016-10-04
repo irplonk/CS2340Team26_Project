@@ -67,8 +67,8 @@ public class LoginScreenController {
     public void handleLoginPressed() {
         if (isInputValid()) {
             if (checkUserInfo()) {
-                mainApplication.showWelcomeScreen();
                 loginStage.close();
+                mainApplication.showWelcomeScreen();
                 isClicked = true;
             }
         }

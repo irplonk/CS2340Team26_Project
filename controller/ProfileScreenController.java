@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.*;
+import java.util.List;
 
 /**
  * The controller for the profile page screen
