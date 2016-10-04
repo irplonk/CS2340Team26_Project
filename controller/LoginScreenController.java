@@ -92,6 +92,7 @@ public class LoginScreenController {
             for (int i = 0; i < checkList.size(); i++) {
                 if (userID.getText().equals(checkList.get(i).getID()) && password.getText().equals(checkList.get(i).getPassword())) {
                     check = true;
+                    ProfileScreenController.user = checkList.get(i);
                 }
             }
         }
