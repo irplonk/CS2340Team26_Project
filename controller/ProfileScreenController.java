@@ -38,10 +38,6 @@ public class ProfileScreenController {
     @FXML
     private TextField Title;
 
-    //private final ObservableList<AuthorizedUser> data =
-    //        FXCollections.observableArrayList(
-    //                new AuthorizedUser("Jacob", "Smith", "jacob.smith@example.com"),
-    //        );
     private final ObservableList<AuthorizedUser> data = FXCollections.observableArrayList();
 
     @FXML
@@ -94,28 +90,17 @@ public class ProfileScreenController {
      */
     @FXML
     public void handleSave() {
-        //data.add();
         if (isInputValid()) {
-            switch (userType.getValue().getName()) {
-                case "user":
-                    user = new User(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
-                    break;
-                case "worker":
-                    user = new Worker(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
-                    break;
-                case "manager":
-                    user = new Manager(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
-                    break;
-                case "administrator":
-                    user = new Administrator(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
-                    break;
-                default:
-                    user = new User(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
-                    break;
+            AuthorizedUser au = new User();
+            au.setName(Name.getText());
+            au.setID(ID.getText());
+            au.setEmailaddress(EmailAddress.getText());
+            au.setHomeaddress(HomeAddress.getText());
+            au.setTitle(Title.getText());
+            data.add(au);
             }
-            authorizedUserList.add(user);
-            registrationStage.close();
-        }
+            profileScreenStage.close();
+
     }
 
 }
