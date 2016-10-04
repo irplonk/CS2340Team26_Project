@@ -8,7 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.AuthorizedUser;
+import model.*;
 
 /**
  * The controller for the profile page screen
@@ -38,32 +38,14 @@ public class ProfileScreenController {
     @FXML
     private TextField Title;
 
-    //private final ObservableList<AuthorizedUser> data =
-    //        FXCollections.observableArrayList(
-    //                new AuthorizedUser("Jacob", "Smith", "jacob.smith@example.com"),
-    //        );
     private final ObservableList<AuthorizedUser> data = FXCollections.observableArrayList();
-
-    /**
-     * allow for calling back to the main application code if necessary
-     * @param main the reference to the FX Application instance
-     * */
-    public void setMainApp(MainFXApplication main) {
-        mainApplication = main;
-    }
-
-
-    /**
-     * Sets up profile screen screen stage
-     * @param profileScreenStage sets the strage for this dialog
-     */
-    public void setProfileScreenStage(Stage profileScreenStage) {this.profileScreenStage = profileScreenStage;};
 
     @FXML
     private Button Save;
+
     /**
      * Checks if the input is valid
-     * @return returns true if input in both fields is valid
+     * @return returns true if input in all fields are valid
      */
     private boolean isInputValid() {
         String errorMessage = "";
@@ -102,12 +84,23 @@ public class ProfileScreenController {
         }
     }
 
+
     /**
      * Called when user clicks Save
      */
     @FXML
     public void handleSave() {
-        //data.add();
+        if (isInputValid()) {
+            AuthorizedUser au = new User();
+            au.setName(Name.getText());
+            au.setID(ID.getText());
+            au.setEmailaddress(EmailAddress.getText());
+            au.setHomeaddress(HomeAddress.getText());
+            au.setTitle(Title.getText());
+            data.add(au);
+            }
+            profileScreenStage.close();
+
     }
 
 }
