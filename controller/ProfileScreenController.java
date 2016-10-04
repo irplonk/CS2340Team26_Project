@@ -43,6 +43,22 @@ public class ProfileScreenController {
     @FXML
     private Button Save;
 
+
+    /**
+     * allow for calling back to the main application code if necessary
+     * @param main the reference to the FX Application instance
+     * */
+    public void setMainApp(MainFXApplication main) {
+        mainApplication = main;
+    }
+
+
+    /**
+     * Sets up profile screen screen stage
+     * @param profileScreenStage sets the strage for this dialog
+     */
+    public void setProfileScreenStage(Stage profileScreenStage) {this.profileScreenStage = profileScreenStage;};
+
     /**
      * Checks if the input is valid
      * @return returns true if input in all fields are valid
