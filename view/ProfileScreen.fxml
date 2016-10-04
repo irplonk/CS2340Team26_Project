@@ -18,8 +18,8 @@
                 <Font size="16.0" />
             </font>
         </Text>
-        <TextField fx:id="userID" layoutX="217.0" layoutY="116.0" prefHeight="25.0" prefWidth="200.0" />
-        <TextField fx:id="password" layoutX="217.0" layoutY="148.0" prefHeight="25.0" prefWidth="200.0" />
+        <TextField fx:id="Name" layoutX="217.0" layoutY="116.0" prefHeight="25.0" prefWidth="200.0" />
+        <TextField fx:id="ID" layoutX="217.0" layoutY="148.0" prefHeight="25.0" prefWidth="200.0" />
         <Text layoutX="179.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile" wrappingWidth="180.24346923828125">
             <font>
                 <Font size="36.0" />
@@ -41,8 +41,8 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="userID1" layoutX="215.0" layoutY="183.0" prefHeight="25.0" prefWidth="200.0" />
-      <TextField fx:id="userID11" layoutX="217.0" layoutY="217.0" prefHeight="25.0" prefWidth="200.0" />
-      <TextField fx:id="userID111" layoutX="215.0" layoutY="250.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="EmailAddress" layoutX="215.0" layoutY="183.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="HomeAddress" layoutX="217.0" layoutY="217.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="Title" layoutX="215.0" layoutY="250.0" prefHeight="25.0" prefWidth="200.0" />
     </children>
 </Pane>
