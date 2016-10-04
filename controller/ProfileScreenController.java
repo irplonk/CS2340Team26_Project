@@ -25,6 +25,8 @@ public class ProfileScreenController {
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
+    public static AuthorizedUser user;
+
     @FXML
     private TextField Name;
 
@@ -54,12 +56,22 @@ public class ProfileScreenController {
         mainApplication = main;
     }
 
-
     /**
      * Sets up profile screen screen stage
      * @param profileScreenStage sets the strage for this dialog
      */
-    public void setProfileScreenStage(Stage profileScreenStage) {this.profileScreenStage = profileScreenStage;};
+    public void setProfileScreenStage(Stage profileScreenStage) {
+        this.profileScreenStage = profileScreenStage;
+        this.Name.setText(this.user.getName());
+        this.ID.setText(this.user.getID());
+        this.EmailAddress.setText(this.user.getEmailaddress());
+        this.HomeAddress.setText(this.user.getHomeaddress());
+    };
+
+    /**
+     * @param user sets the user
+     */
+    public void setUser(AuthorizedUser user) {this.user = user;};
 
     /**
      * Called when user clicks cancel
@@ -117,13 +129,11 @@ public class ProfileScreenController {
     @FXML
     public void handleSave() {
         if (isInputValid()) {
-            AuthorizedUser au = new User();
-            au.setName(Name.getText());
-            au.setID(ID.getText());
-            au.setEmailaddress(EmailAddress.getText());
-            au.setHomeaddress(HomeAddress.getText());
-            au.setTitle(Title.getText());
-            data.add(au);
+            user.setName(Name.getText());
+            user.setID(ID.getText());
+            user.setEmailaddress(EmailAddress.getText());
+            user.setHomeaddress(HomeAddress.getText());
+            user.setTitle(Title.getText());
             }
 
         profileScreenStage.close();
