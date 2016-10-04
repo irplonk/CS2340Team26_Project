@@ -109,7 +109,7 @@ public class ProfileScreenController {
     @FXML
     public void handleSave() {
         if (isInputValid()) {
-            AuthorizedUser au = list.getValue();
+            AuthorizedUser au = new User();
             au.setName(Name.getText());
             au.setID(ID.getText());
             au.setEmailaddress(EmailAddress.getText());
@@ -117,7 +117,8 @@ public class ProfileScreenController {
             au.setTitle(Title.getText());
             data.add(au);
             }
-            profileScreenStage.close();
+
+        profileScreenStage.close();
 
     }
 
