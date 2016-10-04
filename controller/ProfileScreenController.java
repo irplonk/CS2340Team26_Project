@@ -23,6 +23,8 @@ public class ProfileScreenController {
 
     private Stage profileScreenStage;
 
+    private final ObservableList<UserType> list = FXCollections.observableArrayList();
+
     @FXML
     private TextField Name;
 
@@ -107,7 +109,7 @@ public class ProfileScreenController {
     @FXML
     public void handleSave() {
         if (isInputValid()) {
-            AuthorizedUser au = new User();
+            AuthorizedUser au = list.getValue();
             au.setName(Name.getText());
             au.setID(ID.getText());
             au.setEmailaddress(EmailAddress.getText());
