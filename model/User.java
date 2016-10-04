@@ -16,6 +16,10 @@ public class User extends AuthorizedUser {
     //protected String homeaddress;
     //protected String title;
 
+    public User() {
+        // Default user, null properties
+    }
+
     public User(String name, String id, String password) {
         this.name = name;
         this.id = id;
