@@ -8,7 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.AuthorizedUser;
+import model.*;
 
 /**
  * The controller for the profile page screen
@@ -46,9 +46,10 @@ public class ProfileScreenController {
 
     @FXML
     private Button Save;
+
     /**
      * Checks if the input is valid
-     * @return returns true if input in both fields is valid
+     * @return returns true if input in all fields are valid
      */
     private boolean isInputValid() {
         String errorMessage = "";
@@ -86,12 +87,35 @@ public class ProfileScreenController {
             return false;
         }
     }
+
+
     /**
      * Called when user clicks Save
      */
     @FXML
     public void handleSave() {
         //data.add();
+        if (isInputValid()) {
+            switch (userType.getValue().getName()) {
+                case "user":
+                    user = new User(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    break;
+                case "worker":
+                    user = new Worker(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    break;
+                case "manager":
+                    user = new Manager(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    break;
+                case "administrator":
+                    user = new Administrator(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    break;
+                default:
+                    user = new User(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    break;
+            }
+            authorizedUserList.add(user);
+            registrationStage.close();
+        }
     }
 
 }
