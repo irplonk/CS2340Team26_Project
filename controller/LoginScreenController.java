@@ -140,4 +140,8 @@ public class LoginScreenController {
         }
     }
 
+    public String getUserID() {
+        return userID.getText();
+    }
+
 }

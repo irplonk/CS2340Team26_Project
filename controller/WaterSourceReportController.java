@@ -8,8 +8,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
+import model.AuthorizedUser;
+import model.Report;
 import model.WaterCondition;
+import model.WaterSourceReport;
 import model.WaterType;
+
+import java.util.ArrayList;
 
 /**
  * Created by Isabella on 10/6/16.
@@ -20,6 +25,8 @@ public class WaterSourceReportController {
 
     private Stage waterSourceReportStage;
 
+    public static AuthorizedUser user;
+
     @FXML
     private TextField location;
 
@@ -29,9 +36,13 @@ public class WaterSourceReportController {
     @FXML
     private ComboBox<WaterCondition> waterCondition = new ComboBox<>();
 
+    private Report report;
+
     private final ObservableList<WaterType> tList = FXCollections.observableArrayList();
 
     private final ObservableList<WaterCondition> cList = FXCollections.observableArrayList();
+
+    public static ArrayList<Report> reportList = new ArrayList<>();
 
     /**
      * Called automatically after load
@@ -72,6 +83,8 @@ public class WaterSourceReportController {
     @FXML
     public void handleSubmitReport() {
         if (isInputValid()) {
+            report = new WaterSourceReport(this.user.getID(), location.getText(), waterType.getValue(), waterCondition.getValue());
+            reportList.add(report);
             waterSourceReportStage.close();
         }
     }

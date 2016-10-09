@@ -31,6 +31,12 @@ public class WelcomeScreenController {
     @FXML
     private Button editProfile;
 
+    @FXML
+    private Button submitReport;
+
+    @FXML
+    private Button viewReports;
+
     /**
      * allow for calling back to the main application code if necessary
      * @param main the reference to the FX Application instance
@@ -68,5 +74,13 @@ public class WelcomeScreenController {
     private void handleSubmitReport() {
         mainApplication.showWaterSourceReportScreen();
         // mainApplication.showWaterPurityReportScreen();
+    }
+
+    /**
+     * Called when user clicks view reports
+     */
+    @FXML
+    private void handleViewReports() {
+        mainApplication.showViewReportsScreen();
     }
 }

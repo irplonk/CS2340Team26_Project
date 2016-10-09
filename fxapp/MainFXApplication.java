@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.text.View;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -240,10 +241,10 @@ public class MainFXApplication extends Application {
             dialogStage.setScene(scene);
 
             // Set the stage into the controller.
-            RegistrationScreenController controller = loader.getController();
-            controller.setRegistrationStage(dialogStage);
+            WaterSourceReportController controller = loader.getController();
+            controller.setWaterSourceReportStage(dialogStage);
             controller.setMainApp(this);
-            checkList = controller.getUserList();
+            //checkList = controller.getUserList();
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -272,10 +273,41 @@ public class MainFXApplication extends Application {
             dialogStage.setScene(scene);
 
             // Set the stage into the controller.
-            RegistrationScreenController controller = loader.getController();
-            controller.setRegistrationStage(dialogStage);
+            WaterPurityReportController controller = loader.getController();
+            controller.setWaterPurityReportStage(dialogStage);
             controller.setMainApp(this);
-            checkList = controller.getUserList();
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Displays the water purity report screen
+     */
+    public void showViewReportsScreen() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/ViewReportsScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Current List of All Submitted Reports");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the stage into the controller.
+            ViewReportController controller = loader.getController();
+            controller.setViewReportsStage(dialogStage);
+            controller.setMainApp(this);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
