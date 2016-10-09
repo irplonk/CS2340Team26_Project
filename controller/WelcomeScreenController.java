@@ -60,4 +60,13 @@ public class WelcomeScreenController {
     private void handleEditProfile() {
         mainApplication.showProfileScreen();
     }
+
+    /**
+     * Called when user clicks submit report
+     */
+    @FXML
+    private void handleSubmitReport() {
+        mainApplication.showWaterSourceReportScreen();
+        // mainApplication.showWaterPurityReportScreen();
+    }
 }

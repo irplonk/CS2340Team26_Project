@@ -221,6 +221,70 @@ public class MainFXApplication extends Application {
         }
     }
 
+    /**
+     * Displays the water source report screen
+     */
+    public void showWaterSourceReportScreen() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/WaterSourceReportScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Submit a Report");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the stage into the controller.
+            RegistrationScreenController controller = loader.getController();
+            controller.setRegistrationStage(dialogStage);
+            controller.setMainApp(this);
+            checkList = controller.getUserList();
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Displays the water purity report screen
+     */
+    public void showWaterPurityReportScreen() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/WaterPuritySourceScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Submit a Report");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the stage into the controller.
+            RegistrationScreenController controller = loader.getController();
+            controller.setRegistrationStage(dialogStage);
+            controller.setMainApp(this);
+            checkList = controller.getUserList();
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
