@@ -11,13 +11,15 @@ public abstract class Report {
     private Date dateObj = new Date();
     private String date = df.format(dateObj);
     private String reportNumber;
+    private static int reportNum = -1;
     private String reporter;
     private String location;
 
     public Report(String reporter, String location) {
         this.reporter = reporter;
         this.location = location;
-        reportNumber = "000000";
+        reportNum++;
+        this.reportNumber = Integer.toString(reportNum);
     }
 
     public String getDate() {
