@@ -35,4 +35,10 @@ public abstract class Report {
     public String getLocation() {
         return location;
     }
+
+    public String toString() {
+        return getDate() + "  " + getReportNumber()
+                + "  " + getReporter()
+                + "  " + getLocation();
+    }
 }

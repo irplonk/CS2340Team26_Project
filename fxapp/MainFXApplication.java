@@ -261,7 +261,7 @@ public class MainFXApplication extends Application {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApplication.class.getResource("../view/WaterPuritySourceScreen.fxml"));
+            loader.setLocation(MainFXApplication.class.getResource("../view/WaterPurityReportScreen.fxml"));
             Pane page = loader.load();
 
             // Create the dialog Stage.

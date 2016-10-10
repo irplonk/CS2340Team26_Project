@@ -8,8 +8,9 @@
    <children>
       <Button fx:id="logout" layoutX="494.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="31.0" prefWidth="92.0" text="Logout" />
       <Text layoutX="267.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" />
-      <Button fx:id="editProfile" layoutX="122.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="31.0" prefWidth="100.0" text="Edit Profile" />
-      <Button fx:id="submitReport" layoutX="245.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleSubmitReport" prefHeight="31.0" prefWidth="111.0" text="Submit Report" />
-      <Button fx:id="viewReports" layoutX="386.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleViewReports" prefHeight="31.0" prefWidth="100.0" text="View Reports" />
+      <Button fx:id="editProfile" layoutX="494.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="31.0" prefWidth="92.0" text="Edit Profile" />
+      <Button fx:id="submitSourceReport" layoutX="202.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleSubmitSourceReport" prefHeight="31.0" prefWidth="196.0" text="Submit Water Source Report" />
+      <Button fx:id="viewReports" layoutX="250.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleViewReports" prefHeight="31.0" prefWidth="100.0" text="View Reports" />
+      <Button fx:id="submitPurityReport" layoutX="202.0" layoutY="326.0" mnemonicParsing="false" onAction="#handleSubmitPurityReport" prefHeight="31.0" prefWidth="196.0" text="Submit Water Purity Report" />
    </children>
 </Pane>

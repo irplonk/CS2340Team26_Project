@@ -20,4 +20,10 @@ public class WaterSourceReport extends Report {
     public WaterType getWaterType() {
         return waterType;
     }
+
+    public String toString() {
+        return super.toString()
+                + "  " + waterType.getType()
+                + "  " + waterCondition.getCondition();
+    }
 }

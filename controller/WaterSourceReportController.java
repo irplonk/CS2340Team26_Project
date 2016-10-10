@@ -88,7 +88,7 @@ public class WaterSourceReportController {
     @FXML
     public void handleSubmitReport() {
         if (isInputValid()) {
-            report = new WaterSourceReport("Pizza", waterLocation.getText(), waterType.getValue(), waterCondition.getValue());
+            report = new WaterSourceReport(this.user.getID(), waterLocation.getText(), waterType.getValue(), waterCondition.getValue());
             reportList.add(report);
         }
         waterSourceReportStage.close();

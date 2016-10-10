@@ -8,7 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-import model.OverallWaterCondition;
+import model.*;
 
 /**
  * Created by Isabella on 10/8/16.
@@ -19,8 +19,12 @@ public class WaterPurityReportController {
 
     private Stage waterPurityReportStage;
 
+    private Report report;
+
+    public static AuthorizedUser user;
+
     @FXML
-    private TextField location;
+    private TextField waterLocation;
 
     @FXML
     private TextField virusPPM;
@@ -70,8 +74,12 @@ public class WaterPurityReportController {
     @FXML
     public void handleSubmitReport() {
         if (isInputValid()) {
-            waterPurityReportStage.close();
+            double virus = Double.parseDouble(virusPPM.getText());
+            double contaminant = Double.parseDouble(contaminantPPM.getText());
+            report = new WaterPurityReport(this.user.getID(), waterLocation.getText(), overallWaterCondition.getValue(), virus, contaminant);
+            WaterSourceReportController.reportList.add(report);
         }
+        waterPurityReportStage.close();
     }
 
     /**
@@ -82,7 +90,7 @@ public class WaterPurityReportController {
         String errorMessage = "";
 
         // Checks to see if the user typed something in all of the fields
-        if (location.getText() == null || location.getText().length() == 0) {
+        if (waterLocation.getText() == null || waterLocation.getText().length() == 0) {
             errorMessage += "Not a valid location!\n";
         }
         if (virusPPM.getText() == null || virusPPM.getText().length() == 0) {

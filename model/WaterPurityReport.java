@@ -28,4 +28,10 @@ public class WaterPurityReport extends Report {
         return contaminantPPM;
     }
 
+    public String toString() {
+        return super.toString()
+                + "  " + overallWaterCondition.getName()
+                + "  " + virusPPM + "  " + contaminantPPM;
+    }
+
 }

@@ -94,6 +94,8 @@ public class LoginScreenController {
                     check = true;
                     ProfileScreenController.user = checkList.get(i);
                     WaterSourceReportController.user = checkList.get(i);
+                    WaterPurityReportController.user = checkList.get(i);
+                    WelcomeScreenController.user = checkList.get(i);
                 }
             }
         }
