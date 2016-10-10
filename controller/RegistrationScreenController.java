@@ -47,7 +47,7 @@ public class RegistrationScreenController {
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
-    private AuthorizedUser user;
+    private static AuthorizedUser user;
 
     ArrayList<AuthorizedUser> authorizedUserList = new ArrayList<>();
 

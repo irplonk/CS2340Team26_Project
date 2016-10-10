@@ -22,14 +22,9 @@ public class ViewReportController {
 
     private Stage viewReportStage;
 
-    /* references to the widgets in the fxml file */
-    //@FXML
-    //private ListView<String> list = new ListView<>();
-
-    //private ObservableList<String> items = FXCollections.observableArrayList();
-
+    /**references to the widgets in the fxml file */
     @FXML
-    private ListView<Report> list;
+    private ListView<Report> list = new ListView<>();
 
     private ObservableList<Report> items = FXCollections.observableArrayList();
 
@@ -40,26 +35,8 @@ public class ViewReportController {
      */
     @FXML
     private void initialize() {
-        /*for (Report r : WaterSourceReportController.reportList) {
-            String str = r.getDate() + "  " + r.getReportNumber()
-                    + "  " + r.getReporter() + "  " + r.getLocation()
-                    + "  " + ((WaterSourceReport)r).getWaterCondition().getCondition()
-                    + "  " + ((WaterSourceReport)r).getWaterType().getType() ;
-            items.add(str);
-        }
-        list.setItems(items);*/
-        try {
-            items.addAll(WaterSourceReportController.reportList);
-            list.setItems(items);
-        } catch (NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(viewReportStage);
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("No reports to view");
-            alert.setContentText("No reports have been submitted at this time.");
-
-            alert.showAndWait();
-        }
+        items.addAll(WaterSourceReportController.reportList);
+        list.setItems(items);
     }
 
     /**

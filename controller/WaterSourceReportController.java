@@ -28,7 +28,7 @@ public class WaterSourceReportController {
     public static AuthorizedUser user;
 
     @FXML
-    private TextField location;
+    private TextField waterLocation;
 
     @FXML
     private ComboBox<WaterType> waterType = new ComboBox<>();
@@ -70,6 +70,11 @@ public class WaterSourceReportController {
     public void setWaterSourceReportStage(Stage waterSourceReportStage) {this.waterSourceReportStage = waterSourceReportStage;};
 
     /**
+     * @param user sets the user
+     */
+    public void setUser(AuthorizedUser user) {this.user = user;};
+
+    /**
      * Called when user clicks cancel
      */
     @FXML
@@ -83,10 +88,10 @@ public class WaterSourceReportController {
     @FXML
     public void handleSubmitReport() {
         if (isInputValid()) {
-            report = new WaterSourceReport(this.user.getID(), location.getText(), waterType.getValue(), waterCondition.getValue());
+            report = new WaterSourceReport("Pizza", waterLocation.getText(), waterType.getValue(), waterCondition.getValue());
             reportList.add(report);
-            waterSourceReportStage.close();
         }
+        waterSourceReportStage.close();
     }
 
     /**
@@ -97,7 +102,7 @@ public class WaterSourceReportController {
         String errorMessage = "";
 
         // Checks to see if the user typed something in all of the fields
-        if (location.getText() == null || location.getText().length() == 0) {
+        if (waterLocation.getText() == null || waterLocation.getText().length() == 0) {
             errorMessage += "Not a valid location!\n";
         }
 

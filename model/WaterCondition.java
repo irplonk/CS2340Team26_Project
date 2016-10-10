@@ -7,8 +7,8 @@ import org.omg.PortableInterceptor.USER_EXCEPTION;
  */
 public enum WaterCondition {
     WASTE ("waste"),
-    TREATABLECLEAR ("treatable-clear"),
-    TREATABLEMUDDY ("treatable-muddy"),
+    TREATABLE_CLEAR ("treatable-clear"),
+    TREATABLE_MUDDY ("treatable-muddy"),
     POTABLE ("potable");
 
     /** the representation of the water condition */
