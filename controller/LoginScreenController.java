@@ -93,6 +93,9 @@ public class LoginScreenController {
                 if (userID.getText().equals(checkList.get(i).getID()) && password.getText().equals(checkList.get(i).getPassword())) {
                     check = true;
                     ProfileScreenController.user = checkList.get(i);
+                    WaterSourceReportController.user = checkList.get(i);
+                    WaterPurityReportController.user = checkList.get(i);
+                    WelcomeScreenController.user = checkList.get(i);
                 }
             }
         }
@@ -139,5 +142,4 @@ public class LoginScreenController {
             return false;
         }
     }
-
 }

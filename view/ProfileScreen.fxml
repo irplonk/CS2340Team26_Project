@@ -25,7 +25,7 @@
                 <Font size="36.0" />
             </font>
         </Text>
-        <Button layoutX="249.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleCancel" text="Save" />
+        <Button layoutX="249.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
       <Text layoutX="100.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:" wrappingWidth="107.0989990234375">
          <font>
             <Font size="16.0" />
@@ -44,5 +44,6 @@
       <TextField fx:id="EmailAddress" layoutX="215.0" layoutY="183.0" prefHeight="25.0" prefWidth="200.0" />
       <TextField fx:id="HomeAddress" layoutX="217.0" layoutY="217.0" prefHeight="25.0" prefWidth="200.0" />
       <TextField fx:id="Title" layoutX="215.0" layoutY="250.0" prefHeight="25.0" prefWidth="200.0" />
+      <Button layoutX="350.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
     </children>
 </Pane>

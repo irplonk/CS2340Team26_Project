@@ -59,7 +59,7 @@ public class ProfileScreenController {
 
     /**
      * Sets up profile screen screen stage
-     * @param profileScreenStage sets the strage for this dialog
+     * @param profileScreenStage sets the stage for this dialog
      */
     public void setProfileScreenStage(Stage profileScreenStage) {
         this.profileScreenStage = profileScreenStage;
@@ -67,12 +67,13 @@ public class ProfileScreenController {
         this.ID.setText(this.user.getID());
         this.EmailAddress.setText(this.user.getEmailaddress());
         this.HomeAddress.setText(this.user.getHomeaddress());
-    };
+        this.Title.setText(this.user.getTitle());
+    }
 
     /**
      * @param user sets the user
      */
-    public void setUser(AuthorizedUser user) {this.user = user;};
+    public void setUser(AuthorizedUser user) {this.user = user;}
 
     /**
      * Called when user clicks cancel
@@ -135,7 +136,7 @@ public class ProfileScreenController {
             user.setEmailaddress(EmailAddress.getText());
             user.setHomeaddress(HomeAddress.getText());
             user.setTitle(Title.getText());
-            }
+        }
 
         profileScreenStage.close();
 
