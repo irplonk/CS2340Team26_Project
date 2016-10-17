@@ -9,40 +9,21 @@ import java.util.Calendar;
  */
 
 public class User extends AuthorizedUser {
-    protected static int counter = 0;
-    protected int num = 0;
-    //protected WaterType type;
-    //protected WaterCondition condition;
-    //protected String emailaddress;
-    //protected String homeaddress;
-    //protected String title;
 
+    /**
+     * Creates a User object
+     */
     public User() {
-        // Default user, null properties
+
     }
 
+    /**
+     * Creates a User object
+     * @param name String representation of
+     * @param id
+     * @param password
+     */
     public User(String name, String id, String password) {
-        this.name = name;
-        this.id = id;
-        this.password = password;
-        //this.emailaddress = emailaddress;
-        //this.homeaddress = homeaddress;
-        //this.title = title;
-    }
-
-    public void submitReport() {
-        //param is condition and type
-        // code
-        //this.WaterType = WaterType;
-        //this.WaterCondition = WaterCondition;
-        //counter++;
-        //num = counter;
-        //DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-        //Calendar calobj = Calendar.getInstance();
-        //System.out.println(df.format(calobj.getTime()));
-    }
-
-    public void viewWaterSources() {
-        // code
+        super(name, id, password);
     }
 }

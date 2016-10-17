@@ -15,6 +15,13 @@ public abstract class Report {
     private String reporter;
     private String location;
 
+    /**
+     * Sets reporter name, location, and report number of Report
+     * Increments report number by one
+     *
+     * @param reporter String representation of Report reporter
+     * @param location String representation of Report location
+     */
     public Report(String reporter, String location) {
         this.reporter = reporter;
         this.location = location;
