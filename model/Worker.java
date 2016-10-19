@@ -6,6 +6,12 @@ package model;
 public class Worker extends User {
 
     /**
+     * No-args constructor for Worker object
+     */
+    public Worker() {
+    }
+
+    /**
      * Constructor for Worker object
      * @param name last name, first name of the Worker
      * @param id username of the Worker
@@ -15,7 +21,4 @@ public class Worker extends User {
         super(name, id, password);
     }
 
-    public void reportWaterPurity() {
-        //
-    }
 }

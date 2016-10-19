@@ -13,6 +13,24 @@ public abstract class AuthorizedUser {
     protected String title;
 
     /**
+     * No args constructor
+     */
+    public AuthorizedUser() {
+    }
+
+    /**
+     * Sets name, id, and password of AuthorizedUser
+     * @param name String representation of AuthorizedUser name
+     * @param id String representation of AuthorizedUser id
+     * @param password String representation of AuthorizedUser password
+     */
+    public AuthorizedUser(String name, String id, String password) {
+        this.name = name;
+        this.password = password;
+        this.id = id;
+    }
+
+    /**
      * Getter method for name of Authorized User
      * @return name of Authorized User
      */

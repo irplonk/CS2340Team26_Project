@@ -23,10 +23,18 @@ public enum WaterCondition {
         this.condition = condition;
     }
 
+    /**
+     * Getter method for water condition
+     * @return String representation of water condition
+     */
     public String getCondition() {
         return condition;
     }
 
+    /**
+     * Setter method for water condition
+     * @param condition the String to which condition will be set
+     */
     public void setCondition(String condition) {
         this.condition = condition;
     }

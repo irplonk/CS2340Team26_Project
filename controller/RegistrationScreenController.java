@@ -149,10 +149,18 @@ public class RegistrationScreenController {
         }
     }
 
+    /**
+     * Getter method for authorizedUserList
+     * @return ArrayList list of authorized users
+     */
     public ArrayList<AuthorizedUser> getUserList() {
         return authorizedUserList;
     }
 
+    /**
+     * Setter method for user
+     * @param user the AuthorizedUser to set user to
+     */
     public void setUser(AuthorizedUser user) {
         this.user = user;
     }

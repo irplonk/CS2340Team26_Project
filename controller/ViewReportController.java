@@ -4,13 +4,11 @@ import fxapp.MainFXApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import model.WaterSourceReport;
 import model.Report;
+
+package com.lynden.gmapsexampleapp;
 
 /**
  * Created by Isabella on 10/9/16.

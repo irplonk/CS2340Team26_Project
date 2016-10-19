@@ -25,10 +25,18 @@ public enum WaterType {
         this.type = type;
     }
 
+    /**
+     * Getter for water type
+     * @return String representation of water type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Setter for water type
+     * @param type String name of water type
+     */
     public void setType(String type) {
         this.type = type;
     }
