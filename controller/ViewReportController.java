@@ -8,8 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Report;
 
-package com.lynden.gmapsexampleapp;
-
 /**
  * Created by Isabella on 10/9/16.
  */
@@ -49,7 +47,7 @@ public class ViewReportController {
      * Sets up view report screen stage
      * @param viewReportStage sets the strage for this dialog
      */
-    public void setViewReportsStage(Stage viewReportStage) {this.viewReportStage = viewReportStage;};
+    public void setViewReportsStage(Stage viewReportStage) {this.viewReportStage = viewReportStage;}
 
 
     /**

@@ -73,7 +73,7 @@ public class RegistrationScreenController {
      * Sets up registration screen stage
      * @param registrationStage sets the strage for this dialog
      */
-    public void setRegistrationStage(Stage registrationStage) {this.registrationStage = registrationStage;};
+    public void setRegistrationStage(Stage registrationStage) {this.registrationStage = registrationStage;}
 
     /**
      * Called when user clicks cancel

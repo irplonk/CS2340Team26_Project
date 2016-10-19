@@ -58,7 +58,7 @@ public class MapScreenController implements Initializable, MapComponentInitializ
         MapOptions options = new MapOptions();
 
         //set up the center location for the map
-        LatLong center = new LatLong(34, -88);
+        LatLong center = new LatLong(34, -84);
 
         options.center(center)
                 .zoom(9)
