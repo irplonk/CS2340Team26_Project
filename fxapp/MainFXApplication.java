@@ -41,6 +41,8 @@ public class MainFXApplication extends Application {
 
     private ArrayList<AuthorizedUser> checkList;
 
+    private ArrayList<Report> reportList;
+
     @Override
     public void start(Stage primaryStage) {
         mainScreen = primaryStage;
@@ -245,6 +247,7 @@ public class MainFXApplication extends Application {
             controller.setWaterSourceReportStage(dialogStage);
             controller.setMainApp(this);
             //checkList = controller.getUserList();
+            reportList = controller.getSourceReport();
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -317,7 +320,38 @@ public class MainFXApplication extends Application {
         }
     }
 
+    public void showMapScreen() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/MapScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Water Availability Report Screen");
+            //dialogStage.initModality(Modality.WINDOW_MODAL);
+            //dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the stage into the controller.
+            MapScreenController controller = loader.getController();
+            //controller.setWaterAvailabilityReportScreen(dialogStage);
+            controller.setCallbacks(dialogStage, this);
+            //controller.setMainApp(this);
+            controller.setSourceReport(reportList);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
+        System.setProperty("java.net.useSystemProxies", "true");
         launch(args);
     }
 }

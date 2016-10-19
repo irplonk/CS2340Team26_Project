@@ -45,6 +45,9 @@ public class WelcomeScreenController {
     @FXML
     private Button viewReports;
 
+    @FXML
+    private Button viewWaterAvailReport;
+
     public static AuthorizedUser user;
 
     /**
@@ -59,7 +62,7 @@ public class WelcomeScreenController {
      * Sets up welcome screen stage
      * @param welcomeStage sets the strage for this dialog
      */
-    public void setWelcomeStage(Stage welcomeStage) {this.welcomeStage = welcomeStage;};
+    public void setWelcomeStage(Stage welcomeStage) {this.welcomeStage = welcomeStage;}
 
     /**
      * Called when user clicks logout
@@ -100,6 +103,7 @@ public class WelcomeScreenController {
      */
     @FXML
     private void handleSubmitPurityReport() {
+        System.out.println("button pressed");
         if ((user instanceof Worker) || (user instanceof Manager)) {
             mainApplication.showWaterPurityReportScreen();
         } else {
@@ -120,4 +124,20 @@ public class WelcomeScreenController {
     private void handleViewReports() {
         mainApplication.showViewReportsScreen();
     }
+
+    @FXML
+    private void handleViewWaterAvailReport() {
+        if (user instanceof User) {
+            mainApplication.showMapScreen();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(welcomeStage);
+            alert.setTitle("Not allowed");
+            alert.setHeaderText("You do not have the rights to complete this action.");
+            alert.setContentText("You do not have permission to submit source reports.");
+
+            alert.showAndWait();
+        }
+    }
+
 }

@@ -14,10 +14,14 @@ public abstract class Report {
     private static int reportNum = -1;
     private String reporter;
     private String location;
+    private double latitude;
+    private double longitude;
 
-    public Report(String reporter, String location) {
+    public Report(String reporter, String location, double latitude, double longitude) {
         this.reporter = reporter;
         this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
         reportNum++;
         this.reportNumber = Integer.toString(reportNum);
     }
@@ -38,9 +42,29 @@ public abstract class Report {
         return location;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
     public String toString() {
         return getDate() + "  " + getReportNumber()
                 + "  " + getReporter()
-                + "  " + getLocation();
+                + "  " + getLocation()
+                + "  " + getLatitude()
+                + "  " + getLongitude();
+    }
+
+    public String getDescription() {
+        return  "Marker " + getLocation() + "  Date Submitted: " + getDate()
+                + "  " + "<h2>Report Number: "  + getReportNumber()
+                + "</h2> <br> Source Report for " + getLocation()
+                + "<br> Reporter: " + getReporter()
+                + "<br> Location"
+                + "<br> Latitude: " + getLatitude()
+                + "  " + "Longitude: " + getLongitude();
     }
 }

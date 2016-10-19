@@ -31,6 +31,12 @@ public class WaterSourceReportController {
     private TextField waterLocation;
 
     @FXML
+    private TextField latitude;
+
+    @FXML
+    private TextField longitude;
+
+    @FXML
     private ComboBox<WaterType> waterType = new ComboBox<>();
 
     @FXML
@@ -43,6 +49,10 @@ public class WaterSourceReportController {
     private final ObservableList<WaterCondition> cList = FXCollections.observableArrayList();
 
     public static ArrayList<Report> reportList = new ArrayList<>();
+
+    private WaterSourceReport sourceReport;
+
+    private ArrayList<WaterSourceReport> sourceReportList = new ArrayList<>();
 
     /**
      * Called automatically after load
@@ -67,12 +77,12 @@ public class WaterSourceReportController {
      * Sets up water source report screen stage
      * @param waterSourceReportStage sets the stage for this dialog
      */
-    public void setWaterSourceReportStage(Stage waterSourceReportStage) {this.waterSourceReportStage = waterSourceReportStage;};
+    public void setWaterSourceReportStage(Stage waterSourceReportStage) {this.waterSourceReportStage = waterSourceReportStage;}
 
     /**
      * @param user sets the user
      */
-    public void setUser(AuthorizedUser user) {this.user = user;};
+    public void setUser(AuthorizedUser user) {this.user = user;}
 
     /**
      * Called when user clicks cancel
@@ -88,7 +98,7 @@ public class WaterSourceReportController {
     @FXML
     public void handleSubmitReport() {
         if (isInputValid()) {
-            report = new WaterSourceReport(this.user.getID(), waterLocation.getText(), waterType.getValue(), waterCondition.getValue());
+            report = new WaterSourceReport(this.user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), waterType.getValue(), waterCondition.getValue());
             reportList.add(report);
         }
         waterSourceReportStage.close();
@@ -108,6 +118,7 @@ public class WaterSourceReportController {
 
         // No error message means good input
         if (errorMessage.length() == 0) {
+
             return true;
         } else {
             // Show the error message if bad data
@@ -121,5 +132,9 @@ public class WaterSourceReportController {
 
             return false;
         }
+    }
+
+    public ArrayList<Report> getSourceReport() {
+        return reportList;
     }
 }

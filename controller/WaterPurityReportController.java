@@ -27,6 +27,12 @@ public class WaterPurityReportController {
     private TextField waterLocation;
 
     @FXML
+    private TextField latitude;
+
+    @FXML
+    private TextField longitude;
+
+    @FXML
     private TextField virusPPM;
 
     @FXML
@@ -58,7 +64,7 @@ public class WaterPurityReportController {
      * Sets up water source report screen stage
      * @param waterPurityReportStage sets the stage for this dialog
      */
-    public void setWaterPurityReportStage(Stage waterPurityReportStage) {this.waterPurityReportStage = waterPurityReportStage;};
+    public void setWaterPurityReportStage(Stage waterPurityReportStage) {this.waterPurityReportStage = waterPurityReportStage;}
 
     /**
      * Called when user clicks cancel
@@ -76,7 +82,7 @@ public class WaterPurityReportController {
         if (isInputValid()) {
             double virus = Double.parseDouble(virusPPM.getText());
             double contaminant = Double.parseDouble(contaminantPPM.getText());
-            report = new WaterPurityReport(this.user.getID(), waterLocation.getText(), overallWaterCondition.getValue(), virus, contaminant);
+            report = new WaterPurityReport(this.user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), overallWaterCondition.getValue(), virus, contaminant);
             WaterSourceReportController.reportList.add(report);
         }
         waterPurityReportStage.close();
