@@ -103,7 +103,6 @@ public class WelcomeScreenController {
      */
     @FXML
     private void handleSubmitPurityReport() {
-        System.out.println("button pressed");
         if ((user instanceof Worker) || (user instanceof Manager)) {
             mainApplication.showWaterPurityReportScreen();
         } else {
