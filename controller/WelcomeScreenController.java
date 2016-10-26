@@ -48,6 +48,9 @@ public class WelcomeScreenController {
     @FXML
     private Button viewWaterAvailReport;
 
+    @FXML
+    private Button viewWaterPurityReport;
+
     public static AuthorizedUser user;
 
     /**
@@ -103,7 +106,7 @@ public class WelcomeScreenController {
      */
     @FXML
     private void handleSubmitPurityReport() {
-        if ((user instanceof Worker) || (user instanceof Manager)) {
+        if (user instanceof Worker) {
             mainApplication.showWaterPurityReportScreen();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -117,11 +120,27 @@ public class WelcomeScreenController {
     }
 
     /**
-     * Called when user clicks view reports
+     * Called when user clicks view source reports
      */
     @FXML
-    private void handleViewReports() {
-        mainApplication.showViewReportsScreen();
+    private void handleViewReports() {mainApplication.showViewReportsScreen();}
+
+    /**
+     * Called when user clicks view purity reports
+     */
+    @FXML
+    private void handleViewPurityReport() {
+        if (user instanceof Manager) {
+            mainApplication.showViewPurityReportsScreen();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(welcomeStage);
+            alert.setTitle("Not allowed");
+            alert.setHeaderText("You do not have the rights to complete this action.");
+            alert.setContentText("You do not have permission to submit source reports.");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML

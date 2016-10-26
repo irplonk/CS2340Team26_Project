@@ -19,7 +19,7 @@
                <children>
                   <VBox layoutY="38.0" prefHeight="438.0" prefWidth="437.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                      <children>
-                        <Label text="Submitted Water Reports">
+                        <Label text="Submitted Water Source Reports">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>

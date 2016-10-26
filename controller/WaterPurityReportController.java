@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
+import java.util.ArrayList;
 import model.*;
 
 /**
@@ -40,6 +41,8 @@ public class WaterPurityReportController {
 
     @FXML
     private ComboBox<OverallWaterCondition> overallWaterCondition = new ComboBox<>();
+
+    public static ArrayList<Report> reportList = new ArrayList<>();
 
     private final ObservableList<OverallWaterCondition> list = FXCollections.observableArrayList();
 
@@ -83,7 +86,7 @@ public class WaterPurityReportController {
             double virus = Double.parseDouble(virusPPM.getText());
             double contaminant = Double.parseDouble(contaminantPPM.getText());
             report = new WaterPurityReport(this.user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), overallWaterCondition.getValue(), virus, contaminant);
-            WaterSourceReportController.reportList.add(report);
+            reportList.add(report);
         }
         waterPurityReportStage.close();
     }
