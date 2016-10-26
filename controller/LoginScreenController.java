@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import model.*;
@@ -25,7 +26,7 @@ public class LoginScreenController {
     private TextField userID;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     private boolean isClicked;
 
@@ -68,8 +69,8 @@ public class LoginScreenController {
     public void handleLoginPressed() {
         if (isInputValid()) {
             if (checkUserInfo()) {
-                loginStage.close();
                 mainApplication.showWelcomeScreen();
+                loginStage.close();
                 isClicked = true;
             }
         }

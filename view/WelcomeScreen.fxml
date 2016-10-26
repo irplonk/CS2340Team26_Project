@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
    <children>
-      <Button fx:id="logout" layoutX="494.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="31.0" prefWidth="92.0" text="Logout" />
-      <Text layoutX="267.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" />
-      <Button fx:id="editProfile" layoutX="494.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="31.0" prefWidth="92.0" text="Edit Profile" />
-      <Button fx:id="submitSourceReport" layoutX="202.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleSubmitSourceReport" prefHeight="31.0" prefWidth="196.0" text="Submit Water Source Report" />
-      <Button fx:id="viewReports" layoutX="183.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewReports" prefHeight="31.0" prefWidth="100.0" text="View Reports" />
-      <Button fx:id="submitPurityReport" layoutX="202.0" layoutY="326.0" mnemonicParsing="false" onAction="#handleSubmitPurityReport" prefHeight="31.0" prefWidth="196.0" text="Submit Water Purity Report" />
-      <Button fx:id="viewWaterAvailReport" layoutX="320.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewWaterAvailReport" prefHeight="31.0" prefWidth="185.0" text="View Water Availability Report" />
+      <Button fx:id="logout" layoutX="462.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" prefWidth="124.0" text="Logout" />
+      <Text fill="WHITE" layoutX="245.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" wrappingWidth="109.23291015625">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Button fx:id="editProfile" layoutX="462.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="33.0" prefWidth="124.0" text="Edit Profile" />
+      <Button fx:id="submitSourceReport" layoutX="300.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleSubmitSourceReport" prefHeight="33.0" prefWidth="252.0" text="Submit Water Source Report" />
+      <Button fx:id="viewReports" layoutX="137.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewReports" prefHeight="33.0" prefWidth="146.0" text="View Reports" />
+      <Button fx:id="submitPurityReport" layoutX="300.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleSubmitPurityReport" prefHeight="33.0" prefWidth="252.0" text="Submit Water Purity Report" />
+      <Button fx:id="viewWaterAvailReport" layoutX="300.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewWaterAvailReport" prefHeight="33.0" prefWidth="252.0" text="View Water Availability Report" />
    </children>
+   <styleClass>
+      <String fx:value="label-header" />
+      <String fx:value="background" />
+   </styleClass>
 </Pane>

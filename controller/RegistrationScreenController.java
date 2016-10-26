@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import model.*;
 import java.util.ArrayList;
 
@@ -31,16 +32,13 @@ public class RegistrationScreenController {
     private Button createAccount;
 
     @FXML
-    private TextField lastName;
-
-    @FXML
-    private TextField firstName;
+    private TextField name;
 
     @FXML
     private TextField userID;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private ComboBox<UserType> userType = new ComboBox<>();
@@ -58,6 +56,10 @@ public class RegistrationScreenController {
     private void initialize() {
         list.addAll(UserType.values());
         userType.setItems(list);
+        name.setText("Default");
+        userID.setText("user");
+        password.setText("pass");
+        userType.setValue(list.get(0));
     }
 
 
@@ -91,19 +93,19 @@ public class RegistrationScreenController {
         if (isInputValid()) {
             switch (userType.getValue().getName()) {
                 case "user":
-                    user = new User(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    user = new User(name.getText(), userID.getText(), password.getText());
                     break;
                 case "worker":
-                    user = new Worker(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    user = new Worker(name.getText(), userID.getText(), password.getText());
                     break;
                 case "manager":
-                    user = new Manager(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    user = new Manager(name.getText(), userID.getText(), password.getText());
                     break;
                 case "administrator":
-                    user = new Administrator(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    user = new Administrator(name.getText(), userID.getText(), password.getText());
                     break;
                 default:
-                    user = new User(lastName.getText() + ", " + firstName.getText(), userID.getText(), password.getText());
+                    user = new User(name.getText(), userID.getText(), password.getText());
                     break;
             }
             authorizedUserList.add(user);
@@ -125,11 +127,8 @@ public class RegistrationScreenController {
         if (password.getText() == null || password.getText().length() == 0) {
             errorMessage += "Not a valid password!\n";
         }
-        if (lastName.getText() == null || lastName.getText().length() == 0) {
-            errorMessage += "Not a valid last name!\n";
-        }
-        if (firstName.getText() == null || firstName.getText().length() == 0) {
-            errorMessage += "Not a valid first name!\n";
+        if (name.getText() == null || name.getText().length() == 0) {
+            errorMessage += "Not a valid name!\n";
         }
 
         // No error message means good input
