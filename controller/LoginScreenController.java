@@ -77,6 +77,14 @@ public class LoginScreenController {
     }
 
     /**
+     * Called when the user clicks 'forgot password'.
+     */
+    @FXML
+    private void handleForgot() {
+        mainApplication.showPasswordRecoveryScreen();
+    }
+
+    /**
      * Returns true if user presses login and the information is valid.
      * @return Returns isClicked
      */
