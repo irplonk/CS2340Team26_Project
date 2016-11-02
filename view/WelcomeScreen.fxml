@@ -19,6 +19,7 @@
       <Button fx:id="submitPurityReport" layoutX="300.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleSubmitPurityReport" prefHeight="33.0" prefWidth="252.0" text="Submit Water Purity Report" />
       <Button fx:id="viewWaterAvailReport" layoutX="129.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleViewWaterAvailReport" prefHeight="33.0" prefWidth="154.0" text="View Availability Map" />
       <Button fx:id="viewWaterPurityReport" layoutX="129.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleViewPurityReport" prefHeight="33.0" prefWidth="154.0" text="View Purity Reports" />
+      <Button fx:id="viewHistoryReport" layoutX="29.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewHistoryReport" text="View History Report" />
    </children>
    <styleClass>
       <String fx:value="label-header" />

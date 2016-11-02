@@ -51,6 +51,9 @@ public class WelcomeScreenController {
     @FXML
     private Button viewWaterPurityReport;
 
+    @FXML
+    private Button viewHistoryReport;
+
     public static AuthorizedUser user;
 
     /**
@@ -155,6 +158,35 @@ public class WelcomeScreenController {
             alert.setContentText("You do not have permission to submit source reports.");
 
             alert.showAndWait();
+        }
+    }
+
+    /**
+     * Called when user clicks view history report
+     */
+    @FXML
+    private void handleViewHistoryReport() {
+//        if (isManager()) {
+//            viewHistoryReport.setVisible(true);
+//        } else {
+//            viewHistoryReport.setVisible(false);
+//        }
+        mainApplication.showViewHistoryReportScreen();
+    }
+
+    private boolean isManager() {
+        System.out.print(user.getClass().getName());
+        return (user.getClass().getName() == "model.Manager");
+    }
+    /**
+     * Called automatically after logging in
+     */
+    @FXML
+    public void initialize() {
+        if (isManager()) {
+            viewHistoryReport.setVisible(true);
+        } else {
+            viewHistoryReport.setVisible(false);
         }
     }
 
