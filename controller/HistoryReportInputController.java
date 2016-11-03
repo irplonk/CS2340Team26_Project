@@ -71,7 +71,7 @@ public class HistoryReportInputController {
 
     public void addReports() {
         HistoryReport rep1 = new HistoryReport("Kevin", "Atlanta, GA", 22.4, 34.5, 300, "virus", "May", 2016);
-        HistoryReport rep2 = new HistoryReport("Isabella", "Chicago, IL", 34.8, 78.0, 400, "contaminant", "May" 2016);
+        HistoryReport rep2 = new HistoryReport("Isabella", "Chicago, IL", 34.8, 78.0, 400, "contaminant", "May", 2016);
         HistoryReport rep3 = new HistoryReport("Shivani", "New York, NY", 22.4, 38.6, 250, "contaminant", "May", 2016);
         HistoryReport rep4 = new HistoryReport("Ben", "Los Angeles, CA", 25.0, 45.0, 375, "virus", "September", 2009);
         HistoryReport rep5 = new HistoryReport("Sam", "Boston, MA", 60.5, 27.0, 180, "virus", "October", 2012);
