@@ -1,6 +1,7 @@
 package fxapp;
 
 import controller.*;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
@@ -448,11 +449,11 @@ public class MainFXApplication extends Application {
     /**
      * Displays the water purity report screen
      */
-    public void showViewHistoryReportScreen() {
+    public void showViewHistoryReportInputScreen() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApplication.class.getResource("../view/HistoryReportScreen.fxml"));
+            loader.setLocation(MainFXApplication.class.getResource("../view/HistoryReportInputScreen.fxml"));
             Pane page = loader.load();
 
             // Create the dialog Stage.
@@ -464,8 +465,8 @@ public class MainFXApplication extends Application {
             dialogStage.setScene(scene);
 
             // Set the stage into the controller.
-            ViewHistoricalReportController controller = loader.getController();
-            controller.setViewHistoryReportsStage(dialogStage);
+            HistoryReportInputController controller = loader.getController();
+            controller.setViewHistoryReportInputStage(dialogStage);
             controller.setMainApp(this);
 
             // Show the dialog and wait until the user closes it

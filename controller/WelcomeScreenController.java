@@ -171,7 +171,7 @@ public class WelcomeScreenController {
 //        } else {
 //            viewHistoryReport.setVisible(false);
 //        }
-        mainApplication.showViewHistoryReportScreen();
+        mainApplication.showViewHistoryReportInputScreen();
     }
 
     private boolean isManager() {

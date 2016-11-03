@@ -10,7 +10,14 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import model.AuthorizedUser;
+import model.HistoryReport;
+import model.Report;
+import model.WaterPurityReport;
+
+import java.util.ArrayList;
 
 /**
  * Created by Shivani Upadhayay on 11/1/2016.
@@ -22,7 +29,11 @@ public class ViewHistoricalReportController {
 
     private Stage viewHistoryReportStage;
 
-    ObservableList<String> value = FXCollections.observableArrayList();
+    /**references to the widgets in the fxml file */
+    @FXML
+    private ListView<Report> list = new ListView<>();
+
+    private ArrayList<WaterPurityReport> waterPurityReportList;
 
     XYChart.Series<String, Double> virusPPM = new XYChart.Series<String, Double>();
     XYChart.Series<String, Double> contaminantPPM = new XYChart.Series<String, Double>();
@@ -70,4 +81,5 @@ public class ViewHistoricalReportController {
     public void handleCancel() {
         viewHistoryReportStage.close();
     }
+
 }
