@@ -12,8 +12,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import model.AuthorizedUser;
-import model.HistoryReport;
 import model.Report;
 import model.WaterPurityReport;
 
@@ -81,5 +79,4 @@ public class ViewHistoricalReportController {
     public void handleCancel() {
         viewHistoryReportStage.close();
     }
-
 }

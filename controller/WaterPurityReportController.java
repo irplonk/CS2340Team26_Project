@@ -8,8 +8,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-import java.util.ArrayList;
 import model.*;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Isabella on 10/8/16.
@@ -21,8 +27,6 @@ public class WaterPurityReportController {
     private Stage waterPurityReportStage;
 
     private Report report;
-
-    public static AuthorizedUser user;
 
     @FXML
     private TextField waterLocation;
@@ -41,8 +45,6 @@ public class WaterPurityReportController {
 
     @FXML
     private ComboBox<OverallWaterCondition> overallWaterCondition = new ComboBox<>();
-
-    public static ArrayList<Report> reportList = new ArrayList<>();
 
     private final ObservableList<OverallWaterCondition> list = FXCollections.observableArrayList();
 
@@ -81,12 +83,18 @@ public class WaterPurityReportController {
      * Called when user clicks create account
      */
     @FXML
-    public void handleSubmitReport() {
+    public void handleSubmitReport() throws SQLException, ClassNotFoundException {
         if (isInputValid()) {
             double virus = Double.parseDouble(virusPPM.getText());
             double contaminant = Double.parseDouble(contaminantPPM.getText());
-            report = new WaterPurityReport(this.user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), overallWaterCondition.getValue(), virus, contaminant);
-            reportList.add(report);
+
+            Connection connection = Database.getConnection();
+
+            Statement stmt = connection.createStatement();
+
+            stmt.executeUpdate("INSERT INTO WaterReports VALUES (Null, CURRENT_TIMESTAMP, '"
+                    + Double.parseDouble(latitude.getText()) + "', '" + Double.parseDouble(longitude.getText()) +
+                    "', '" + waterLocation.getText() + "', '" + overallWaterCondition.getValue() + "', Null, '" +  virus + "', '" + contaminant + "')");
         }
         waterPurityReportStage.close();
     }

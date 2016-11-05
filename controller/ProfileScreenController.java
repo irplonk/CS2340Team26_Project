@@ -9,6 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.*;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -26,7 +31,7 @@ public class ProfileScreenController {
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
-    public static AuthorizedUser user;
+    public static User user;
 
     @FXML
     private TextField Name;
@@ -43,7 +48,7 @@ public class ProfileScreenController {
     @FXML
     private TextField Title;
 
-    private final ObservableList<AuthorizedUser> data = FXCollections.observableArrayList();
+    private final ObservableList<User> data = FXCollections.observableArrayList();
 
     @FXML
     private Button Save;
@@ -61,25 +66,42 @@ public class ProfileScreenController {
      * Sets up profile screen screen stage
      * @param profileScreenStage sets the stage for this dialog
      */
-    public void setProfileScreenStage(Stage profileScreenStage) {
+    public void setProfileScreenStage(Stage profileScreenStage) throws SQLException, ClassNotFoundException {
         this.profileScreenStage = profileScreenStage;
-        this.Name.setText(this.user.getName());
-        this.ID.setText(this.user.getID());
-        this.EmailAddress.setText(this.user.getEmailaddress());
-        this.HomeAddress.setText(this.user.getHomeaddress());
-        this.Title.setText(this.user.getTitle());
-    }
 
-    /**
-     * @param user sets the user
-     */
-    public void setUser(AuthorizedUser user) {this.user = user;}
+        Connection connection = Database.getConnection();
+
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE userid = '" + User.id + "'");
+
+        if(rs.next()) {
+            this.Name.setText(rs.getString("firstname") + " " + rs.getString("lastname"));
+            this.ID.setText(rs.getString("userid"));
+
+            String email = rs.getString("email");
+            if(email != null) {
+                this.EmailAddress.setText(email);
+            }
+
+            String homeAddress = rs.getString("home_address");
+            if(homeAddress != null) {
+                this.HomeAddress.setText(homeAddress);
+            }
+
+            String title = rs.getString("title");
+            if(title != null) {
+                this.Title.setText(title);
+            }
+        }
+
+        connection.close();
+    }
 
     /**
      * Called when user clicks cancel
      */
     @FXML
-    public void handleCancel() {
+    public void handleCancel() throws SQLException, ClassNotFoundException {
         profileScreenStage.close();
     }
 
@@ -129,17 +151,18 @@ public class ProfileScreenController {
      * Called when user clicks Save
      */
     @FXML
-    public void handleSave() {
-        if (isInputValid()) {
-            user.setName(Name.getText());
-            user.setID(ID.getText());
-            user.setEmailaddress(EmailAddress.getText());
-            user.setHomeaddress(HomeAddress.getText());
-            user.setTitle(Title.getText());
-        }
+    public void handleSave() throws SQLException, ClassNotFoundException {
+
+        Connection connection = Database.getConnection();
+
+        Statement stmt = connection.createStatement();
+
+        stmt.executeUpdate("Update Users SET userid = '" + ID.getText() + "', email = '" + EmailAddress.getText() + "', home_address = '"
+                + HomeAddress.getText() + "', title = '" + Title.getText() + "' WHERE userid = '" + User.id + "'");
+
+        connection.close();
 
         profileScreenStage.close();
-
     }
 
 }

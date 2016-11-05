@@ -9,14 +9,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.HistoryReport;
-import model.UserType;
 
 /**
  * Created by Shivani Upadhayay on 11/1/2016.
  */
 public class HistoryReportInputController {
 
-    /** a link back to the main application class */
     private MainFXApplication mainApplication;
 
     private Stage viewHistoryReportInputStage;
@@ -132,4 +130,5 @@ public class HistoryReportInputController {
             }
         }
     }
+
 }

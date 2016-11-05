@@ -4,18 +4,11 @@ import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Button;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
-import javafx.fxml.FXMLLoader;
-import model.AuthorizedUser;
 import model.User;
-import model.Manager;
-import model.Worker;
-import model.Administrator;
+
+import java.sql.SQLException;
+import java.util.Objects;
 
 
 /**
@@ -43,6 +36,9 @@ public class WelcomeScreenController {
     private Button submitPurityReport;
 
     @FXML
+    private Button viewHistoryReport;
+
+    @FXML
     private Button viewReports;
 
     @FXML
@@ -51,10 +47,7 @@ public class WelcomeScreenController {
     @FXML
     private Button viewWaterPurityReport;
 
-    @FXML
-    private Button viewHistoryReport;
-
-    public static AuthorizedUser user;
+    public static User user;
 
     /**
      * allow for calling back to the main application code if necessary
@@ -82,7 +75,7 @@ public class WelcomeScreenController {
      * Called when user clicks edit profile
      */
     @FXML
-    private void handleEditProfile() {
+    private void handleEditProfile() throws SQLException, ClassNotFoundException {
         mainApplication.showProfileScreen();
     }
 
@@ -91,7 +84,7 @@ public class WelcomeScreenController {
      */
     @FXML
     private void handleSubmitSourceReport() {
-        if (user instanceof User) {
+        if (Objects.equals(User.type, "USER")) {
             mainApplication.showWaterSourceReportScreen();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -109,7 +102,7 @@ public class WelcomeScreenController {
      */
     @FXML
     private void handleSubmitPurityReport() {
-        if (user instanceof Worker) {
+        if ((Objects.equals(User.type, "WORKER"))) {
             mainApplication.showWaterPurityReportScreen();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -126,14 +119,16 @@ public class WelcomeScreenController {
      * Called when user clicks view source reports
      */
     @FXML
-    private void handleViewReports() {mainApplication.showViewReportsScreen();}
+    private void handleViewReports() {
+        mainApplication.showViewReportsScreen();
+    }
 
     /**
      * Called when user clicks view purity reports
      */
     @FXML
     private void handleViewPurityReport() {
-        if (user instanceof Manager) {
+        if (Objects.equals(User.type, "MANAGER")) {
             mainApplication.showViewPurityReportsScreen();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -148,7 +143,7 @@ public class WelcomeScreenController {
 
     @FXML
     private void handleViewWaterAvailReport() {
-        if (user instanceof User) {
+        if (Objects.equals(User.type, "USER")) {
             mainApplication.showMapScreen();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -174,20 +169,15 @@ public class WelcomeScreenController {
         mainApplication.showViewHistoryReportInputScreen();
     }
 
-    private boolean isManager() {
-        System.out.print(user.getClass().getName());
-        return (user.getClass().getName() == "model.Manager");
-    }
     /**
      * Called automatically after logging in
      */
     @FXML
     public void initialize() {
-        if (isManager()) {
+        if (Objects.equals(User.type, "MANAGER")) {
             viewHistoryReport.setVisible(true);
         } else {
             viewHistoryReport.setVisible(false);
         }
     }
-
 }

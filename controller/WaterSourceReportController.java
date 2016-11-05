@@ -8,13 +8,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-import model.AuthorizedUser;
-import model.Report;
-import model.WaterCondition;
-import model.WaterSourceReport;
-import model.WaterType;
+import model.*;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Isabella on 10/6/16.
@@ -24,8 +26,6 @@ public class WaterSourceReportController {
     private MainFXApplication mainApplication;
 
     private Stage waterSourceReportStage;
-
-    public static AuthorizedUser user;
 
     @FXML
     private TextField waterLocation;
@@ -80,11 +80,6 @@ public class WaterSourceReportController {
     public void setWaterSourceReportStage(Stage waterSourceReportStage) {this.waterSourceReportStage = waterSourceReportStage;}
 
     /**
-     * @param user sets the user
-     */
-    public void setUser(AuthorizedUser user) {this.user = user;}
-
-    /**
      * Called when user clicks cancel
      */
     @FXML
@@ -96,10 +91,15 @@ public class WaterSourceReportController {
      * Called when user clicks create account
      */
     @FXML
-    public void handleSubmitReport() {
+    public void handleSubmitReport() throws SQLException, ClassNotFoundException {
         if (isInputValid()) {
-            report = new WaterSourceReport(this.user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), waterType.getValue(), waterCondition.getValue());
-            reportList.add(report);
+            Connection connection = Database.getConnection();
+
+            Statement stmt = connection.createStatement();
+
+            stmt.executeUpdate("INSERT INTO WaterReports VALUES (Null, CURRENT_TIMESTAMP, '"
+                    + Double.parseDouble(latitude.getText()) + "', '" + Double.parseDouble(longitude.getText()) +
+                    "', '" + waterLocation.getText() + "', '" + waterCondition.getValue() + "', '" +  waterType.getValue() + "', NULL, NULL)");
         }
         waterSourceReportStage.close();
     }

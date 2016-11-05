@@ -5,10 +5,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import model.*;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -26,13 +30,13 @@ public class LoginScreenController {
     private TextField userID;
 
     @FXML
-    private PasswordField password;
+    private TextField password;
 
     private boolean isClicked;
 
-    private ArrayList<AuthorizedUser> checkList;
+    private ArrayList<User> checkList;
 
-    public void setCheckList(ArrayList<AuthorizedUser> checkList) {
+    public void setCheckList(ArrayList<User> checkList) {
         this.checkList = checkList;
     }
 
@@ -66,22 +70,30 @@ public class LoginScreenController {
      * Called when user clicks login.
      */
     @FXML
-    public void handleLoginPressed() {
+    public void handleLoginPressed() throws SQLException, ClassNotFoundException {
         if (isInputValid()) {
-            if (checkUserInfo()) {
-                mainApplication.showWelcomeScreen();
-                loginStage.close();
-                isClicked = true;
-            }
-        }
-    }
 
-    /**
-     * Called when the user clicks 'forgot password'.
-     */
-    @FXML
-    private void handleForgot() {
-        mainApplication.showPasswordRecoveryScreen();
+            Connection connection = Database.getConnection();
+
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE userid = '" + userID.getText() + "' AND password = '"
+                    + password.getText() + "'");
+
+            if (rs.next()) {
+                loginStage.close();
+                User.id = userID.getText();
+                User.type = rs.getString("usertype");
+                mainApplication.showWelcomeScreen();
+                isClicked = true;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Invalid Username and/or Password.");
+                alert.setContentText("Entered Username and/or Password is incorrect.");
+                alert.showAndWait();
+            }
+
+            connection.close();
+        }
     }
 
     /**
@@ -90,33 +102,6 @@ public class LoginScreenController {
      */
     public boolean returnIsClicked() {
         return isClicked;
-    }
-
-    /**
-     * Checks userID and password entered by user.
-     */
-    private boolean checkUserInfo() {
-        boolean check = false;
-        if (checkList != null) {
-            for (int i = 0; i < checkList.size(); i++) {
-                if (userID.getText().equals(checkList.get(i).getID()) && password.getText().equals(checkList.get(i).getPassword())) {
-                    check = true;
-                    ProfileScreenController.user = checkList.get(i);
-                    WaterSourceReportController.user = checkList.get(i);
-                    WaterPurityReportController.user = checkList.get(i);
-                    WelcomeScreenController.user = checkList.get(i);
-                }
-            }
-        }
-
-        if (!check) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Invalid Username and/or Password.");
-            alert.setContentText("Entered Username and/or Password is incorrect.");
-            alert.showAndWait();
-            return check;
-        }
-        return check;
     }
 
     /**

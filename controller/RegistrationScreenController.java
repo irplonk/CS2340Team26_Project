@@ -9,8 +9,12 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
 import model.*;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -32,22 +36,25 @@ public class RegistrationScreenController {
     private Button createAccount;
 
     @FXML
-    private TextField name;
+    private TextField lastName;
+
+    @FXML
+    private TextField firstName;
 
     @FXML
     private TextField userID;
 
     @FXML
-    private PasswordField password;
+    private TextField password;
 
     @FXML
     private ComboBox<UserType> userType = new ComboBox<>();
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
-    private static AuthorizedUser user;
+    private static User user;
 
-    ArrayList<AuthorizedUser> authorizedUserList = new ArrayList<>();
+    ArrayList<User> authorizedUserList = new ArrayList<>();
 
     /**
      * Called automatically after load
@@ -56,10 +63,6 @@ public class RegistrationScreenController {
     private void initialize() {
         list.addAll(UserType.values());
         userType.setItems(list);
-        name.setText("Default");
-        userID.setText("user");
-        password.setText("pass");
-        userType.setValue(list.get(0));
     }
 
 
@@ -89,28 +92,33 @@ public class RegistrationScreenController {
      * Called when user clicks create account
      */
     @FXML
-    public void handleCreateAccount() {
+    public void handleCreateAccount() throws SQLException, ClassNotFoundException {
+
         if (isInputValid()) {
-            switch (userType.getValue().getName()) {
-                case "user":
-                    user = new User(name.getText(), userID.getText(), password.getText());
-                    break;
-                case "worker":
-                    user = new Worker(name.getText(), userID.getText(), password.getText());
-                    break;
-                case "manager":
-                    user = new Manager(name.getText(), userID.getText(), password.getText());
-                    break;
-                case "administrator":
-                    user = new Administrator(name.getText(), userID.getText(), password.getText());
-                    break;
-                default:
-                    user = new User(name.getText(), userID.getText(), password.getText());
-                    break;
+            Connection connection = Database.getConnection();
+
+            Statement stmt = connection.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE userid = '" + userID.getText() + "'");
+
+            if(!rs.isBeforeFirst()) {
+                stmt.executeUpdate("INSERT INTO Users VALUES ('"
+                        + userID.getText() + "', '" + firstName.getText() +
+                        "', '" + lastName.getText() + "', '" + password.getText() + "', '" + userType.getValue() + "', NULL, NULL, NULL)");
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(registrationStage);
+                alert.setTitle("Invalid User ID");
+                alert.setHeaderText("Invalid User ID");
+                alert.setContentText("There seems to already be an account with this User ID. Please try again.");
+
+                alert.showAndWait();
             }
-            authorizedUserList.add(user);
+
+            connection.close();
             registrationStage.close();
         }
+
     }
 
     /**
@@ -127,8 +135,14 @@ public class RegistrationScreenController {
         if (password.getText() == null || password.getText().length() == 0) {
             errorMessage += "Not a valid password!\n";
         }
-        if (name.getText() == null || name.getText().length() == 0) {
-            errorMessage += "Not a valid name!\n";
+        if (lastName.getText() == null || lastName.getText().length() == 0) {
+            errorMessage += "Not a valid last name!\n";
+        }
+        if (firstName.getText() == null || firstName.getText().length() == 0) {
+            errorMessage += "Not a valid first name!\n";
+        }
+        if (userType.getValue() == null) {
+            errorMessage += "Not a valid user type!\n";
         }
 
         // No error message means good input
@@ -152,7 +166,7 @@ public class RegistrationScreenController {
      * Getter method for authorizedUserList
      * @return ArrayList list of authorized users
      */
-    public ArrayList<AuthorizedUser> getUserList() {
+    public ArrayList<User> getUserList() {
         return authorizedUserList;
     }
 
@@ -160,7 +174,7 @@ public class RegistrationScreenController {
      * Setter method for user
      * @param user the AuthorizedUser to set user to
      */
-    public void setUser(AuthorizedUser user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }
