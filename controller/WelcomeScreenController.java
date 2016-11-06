@@ -1,7 +1,12 @@
 package controller;
 
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
+import com.lynden.gmapsfx.javascript.object.*;
 import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.scene.control.MenuBar;
@@ -11,11 +16,13 @@ import javafx.scene.control.Button;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
-import model.AuthorizedUser;
-import model.User;
-import model.Manager;
-import model.Worker;
-import model.Administrator;
+import javafx.stage.Window;
+import model.*;
+import netscape.javascript.JSObject;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
 /**
@@ -23,7 +30,7 @@ import model.Administrator;
  * Created by Isabella on 9/23/16
  * @version 1.0
  */
-public class WelcomeScreenController {
+public class WelcomeScreenController implements Initializable, MapComponentInitializedListener {
 
     /** reference back to mainApplication if needed */
     private MainFXApplication mainApplication;
@@ -54,7 +61,14 @@ public class WelcomeScreenController {
     @FXML
     private Button viewHistoryReport;
 
+    @FXML
+    private GoogleMapView mapView;
+
+    private GoogleMap map;
+
     public static AuthorizedUser user;
+
+    private ArrayList<Report> sourceReport;
 
     /**
      * allow for calling back to the main application code if necessary
@@ -76,6 +90,16 @@ public class WelcomeScreenController {
     @FXML
     private void handleLogout() {
         welcomeStage.close();
+    }
+
+    /**
+     * Initialize method for the map
+     * @param url contains map data
+     * @param rb contains map resources
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        mapView.addMapInializedListener(this);
     }
 
     /**
@@ -188,6 +212,71 @@ public class WelcomeScreenController {
         } else {
             viewHistoryReport.setVisible(false);
         }
+    }
+
+    /**
+     * Sets stage and the MainFXApp
+     * @param stage contains the data for the stage
+     * @param app Is used to link back to the mainFXApp
+     */
+    public void setCallbacks(Stage stage, MainFXApplication app) {
+        welcomeStage = stage;
+        mainApplication = app;
+    }
+
+    /**
+     * Initializes the map with pins
+     */
+    @Override
+    public void mapInitialized() {
+        MapOptions options = new MapOptions();
+
+        //set up the center location for the map
+        LatLong center = new LatLong(34, -84);
+
+        options.center(center)
+                .zoom(9)
+                .overviewMapControl(false)
+                .panControl(false)
+                .rotateControl(false)
+                .scaleControl(false)
+                .streetViewControl(false)
+                .zoomControl(false)
+                .mapType(MapTypeIdEnum.TERRAIN);
+
+        map = mapView.createMap(options);
+
+        //Grabbing locations from water source reports submitted
+        for (Report l: sourceReport) {
+            MarkerOptions markerOptions = new MarkerOptions();
+            LatLong loc = new LatLong(l.getLatitude(), l.getLongitude());
+
+            markerOptions.position(loc)
+                    .visible(Boolean.TRUE)
+                    .title(l.getLocation());
+
+            Marker marker = new Marker(markerOptions);
+
+            map.addUIEventHandler(marker,
+                    UIEventType.click,
+                    (JSObject obj) -> {
+                        InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+                        infoWindowOptions.content(l.getDescription());
+
+                        InfoWindow window = new InfoWindow(infoWindowOptions);
+                        window.open(map, marker);
+                    });
+
+            map.addMarker(marker);
+        }
+    }
+
+    /**
+     * Sets the source report which contains Water Source Reports which contains information for the pins
+     * @param sourceReport list of Water Source Reports
+     */
+    public void setSourceReport(ArrayList<Report> sourceReport) {
+        this.sourceReport = sourceReport;
     }
 
 }

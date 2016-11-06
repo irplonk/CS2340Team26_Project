@@ -42,17 +42,29 @@ public class MapScreenController implements Initializable, MapComponentInitializ
 
     private ArrayList<Report> sourceReport;
 
+    /**
+     * Initialization information for the map
+     * @param url contains map data
+     * @param rb contains map resources
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         mapView.addMapInializedListener(this);
     }
 
+    /**
+     * Sets the stage and the MainFXApp
+     * @param stage
+     * @param app
+     */
     public void setCallbacks(Window stage, MainFXApplication app) {
         mainStage = stage;
         mainApplication = app;
     }
 
-
+    /**
+     * Initializes the map and loaded the markers to place onto the map
+     */
     @Override
     public void mapInitialized() {
         MapOptions options = new MapOptions();
@@ -111,11 +123,18 @@ public class MapScreenController implements Initializable, MapComponentInitializ
      */
     public void setWaterAvailabilityReportScreen(Stage mapStage) { mapWindow = mapStage; }
 
+    /**
+     * Closes the menu when the x button is clicked
+     */
     @FXML
     public void onCloseMenu() {
         mapWindow.close();
     }
 
+    /**
+     * A method to set the Water Source Reports to pull info for pins
+     * @param sourceReport the list containing the water source reports
+     */
     public void setSourceReport(ArrayList<Report> sourceReport) {
         this.sourceReport = sourceReport;
     }

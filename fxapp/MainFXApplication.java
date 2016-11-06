@@ -148,6 +148,7 @@ public class MainFXApplication extends Application {
             WelcomeScreenController controller = loader.getController();
             controller.setWelcomeStage(dialogStage);
             controller.setMainApp(this);
+            controller.setSourceReport(reportList);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

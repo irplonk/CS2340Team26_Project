@@ -43,6 +43,9 @@ public class RegistrationScreenController {
     @FXML
     private ComboBox<UserType> userType = new ComboBox<>();
 
+    @FXML
+    private TextField confirmPass;
+
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
     private static AuthorizedUser user;
@@ -59,6 +62,7 @@ public class RegistrationScreenController {
         name.setText("Default");
         userID.setText("user");
         password.setText("pass");
+        confirmPass.setText("pass");
         userType.setValue(list.get(0));
     }
 
@@ -90,7 +94,7 @@ public class RegistrationScreenController {
      */
     @FXML
     public void handleCreateAccount() {
-        if (isInputValid()) {
+        if (isInputValid() && passwordCheck()) {
             switch (userType.getValue().getName()) {
                 case "user":
                     user = new User(name.getText(), userID.getText(), password.getText());
@@ -110,6 +114,28 @@ public class RegistrationScreenController {
             }
             authorizedUserList.add(user);
             registrationStage.close();
+        }
+    }
+
+    private boolean passwordCheck() {
+        boolean check = false;
+        if (password.getText().equals(confirmPass.getText())) {
+            check = true;
+        }
+
+        if (check) {
+            return check;
+        } else {
+            // Show the error message if bad data
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(registrationStage);
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText("The passwords you have entered do not match.");
+
+            alert.showAndWait();
+
+            return false;
         }
     }
 
