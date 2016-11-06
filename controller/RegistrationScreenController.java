@@ -117,6 +117,11 @@ public class RegistrationScreenController {
         }
     }
 
+    /**
+     * Checks both password fields to see if they are identical.
+     * Returns true if they are or false otherwise
+     * @return true if password are identical
+     */
     private boolean passwordCheck() {
         boolean check = false;
         if (password.getText().equals(confirmPass.getText())) {
