@@ -26,8 +26,8 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <Button layoutX="151.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleLoginPressed" prefHeight="25.0" prefWidth="51.0" text="Login" textAlignment="CENTER" />
-      <Button layoutX="231.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
-      <Button layoutX="158.0" layoutY="205.0" mnemonicParsing="false" onAction="#handleForgot" prefHeight="25.0" prefWidth="110.0" text="Forgot Password?" />
+      <Button layoutX="203.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleLoginPressed" prefHeight="31.0" prefWidth="80.0" text="Login" textAlignment="CENTER" />
+      <Button layoutX="305.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel" />
+      <Button layoutX="208.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleForgot" prefHeight="31.0" prefWidth="159.0" text="Forgot Password?" />
    </children>
 </Pane>
