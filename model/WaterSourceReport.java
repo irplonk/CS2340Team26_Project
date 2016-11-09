@@ -55,6 +55,6 @@ public class WaterSourceReport extends Report {
                 + "<br> Latitude: " + getLatitude()
                 + "  " + "Longitude: " + getLongitude()
                 + "<br> Water Type: " + getWaterType()
-                + "<br> Water Condition" + getWaterCondition();
+                + "<br> Water Condition: " + getWaterCondition();
     }
 }
