@@ -66,7 +66,7 @@ public class PasswordResetTest {
         };
         t.setDaemon(true);
         t.start();
-        Thread.sleep(1500);
+        Thread.sleep(5000);
     }
 
     /*
