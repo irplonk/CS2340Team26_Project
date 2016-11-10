@@ -39,6 +39,14 @@ public class PasswordResetController {
     private String code;
 
     /**
+     * Constructor for testing purposes
+     *
+    public PasswordResetController() {
+        firstPass = new TextField();
+        secondPass = new TextField();
+    }*/
+
+    /**
      * Initialize password recovery screen, hide button
      */
     @FXML
@@ -75,11 +83,12 @@ public class PasswordResetController {
 
     /**
      * Called when user clicks 'reset'
+     *
+     * Returns whether or not password is reset
      */
     @FXML
     public void handleReset() {
-        if (firstPass.getText().equals(
-                secondPass.getText())) {
+        if (passwordCheck()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initOwner(passwordResetStage);
             alert.setTitle("Password Reset");
@@ -90,8 +99,54 @@ public class PasswordResetController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(passwordResetStage);
             alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Passwords do not match");
+            alert.setHeaderText("Passwords do not match or are not between 6-19 chars");
             alert.showAndWait();
         }
+    }
+
+    /**
+     * Method to check whether or not password fields are valid
+     *
+     * Made public for JUnit tests
+     */
+    public boolean passwordCheck() {
+        if (!firstPass.getText().isEmpty()
+                && firstPass.getText().length() > 5
+                && firstPass.getText().length() < 20) {
+            String a = firstPass.getText();
+            String b = secondPass.getText();
+            boolean temp = firstPass.getText().equals(secondPass.getText());
+            return firstPass.getText().equals(secondPass.getText());
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Set first password. For testing purposes
+     */
+    public void setFirstPass(TextField firstPass) {
+        this.firstPass = firstPass;
+    }
+
+    /**
+     * Set second password. For testing purposes
+     */
+    public void setSecondPass(TextField secondPass) {
+        this.secondPass = secondPass;
+    }
+
+    /**
+     * Return first password. For testing purposes
+     */
+    public TextField getFirstPass() {
+        return firstPass;
+    }
+
+    /**
+     * Return second password. For testing purposes
+     */
+    public TextField getSecondPass() {
+        return secondPass;
     }
 }
