@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import model.*;
 
 /**
+ * Controller for water purity report
  * @author Isabella Plonk
  * @version 1.0
  */

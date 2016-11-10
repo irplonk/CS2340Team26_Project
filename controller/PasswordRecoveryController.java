@@ -14,6 +14,7 @@ import java.util.UUID;
 
 
 /**
+ * Controller for password recovery
  * @author Kevin Wang
  * @version 1.0
  */

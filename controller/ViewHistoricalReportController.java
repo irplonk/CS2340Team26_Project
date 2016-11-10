@@ -12,6 +12,7 @@ import model.WaterPurityReport;
 import java.util.ArrayList;
 
 /**
+ * Controller for view historical report
  * @author Shivani Upadhayay
  * @version 1.0
  */

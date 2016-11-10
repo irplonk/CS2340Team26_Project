@@ -17,6 +17,7 @@ import model.WaterType;
 import java.util.ArrayList;
 
 /**
+ * Controller for water source report
  * @author Isabella Plonk
  * @version 1.0
  */

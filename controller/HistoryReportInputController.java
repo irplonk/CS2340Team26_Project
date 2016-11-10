@@ -14,6 +14,7 @@ import java.util.Hashtable;
 import java.util.Objects;
 
 /**
+ * Controller for history report input
  * @author Shivani Upadhayay
  * @version 1.0
  */

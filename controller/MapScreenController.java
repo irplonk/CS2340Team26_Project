@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 /**
+ * Controller for map screen
  * @author Sam Sok
  * @version 1.0
  */

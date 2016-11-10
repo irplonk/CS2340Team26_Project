@@ -9,7 +9,8 @@ import javafx.scene.control.Alert;
 
 
 /**
- * @author Isabella Plonk
+ * Controller for password reset
+ * @author Kevin Wang
  * @version 1.0
  */
 public class PasswordResetController {

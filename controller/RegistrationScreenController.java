@@ -14,8 +14,8 @@ import model.*;
 import java.util.ArrayList;
 
 /**
- * The controller for the registration screen
- * Created by Isabella on 10/1/16
+ * Controller for registration screen
+ * @author Isabella Plonk
  * @version 1.0
  */
 public class RegistrationScreenController {

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 /**
+ * Controller for login screen
  * @author Sam Sok
  * @version 1.0
  */

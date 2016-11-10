@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 import model.*;
 
 /**
- * The controller for the profile page screen
- * Created by Shivani on 10/3/16
+ * Controller for profile screen
+ * @author Shivani Upadhayay
  * @version 1.0
  */
 

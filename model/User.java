@@ -1,8 +1,8 @@
 package model;
 
 /**
- * Created by Isabella on 10/1/16.
- * Edited by Shivani on 10/3/16.
+ * @author Isabella Plonk, Shivani Upadhayay
+ * @version 2.0
  */
 
 public class User extends AuthorizedUser {

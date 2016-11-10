@@ -19,7 +19,8 @@ import sun.applet.Main;
 import java.io.IOException;
 
 /**
- * Created by Kevin on 11/7/2016
+ * @author Kevin Wang
+ * @version 1.0
  */
 public class PasswordResetTest {
     FXMLLoader loader;

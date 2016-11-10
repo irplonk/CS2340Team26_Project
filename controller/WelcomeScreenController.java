@@ -20,8 +20,8 @@ import java.util.ResourceBundle;
 
 
 /**
- * The controller for the welcome screen
- * Created by Isabella on 9/23/16
+ * Controller for welcome screen
+ * @author Isabella Plonk
  * @version 1.0
  */
 public class WelcomeScreenController implements Initializable, MapComponentInitializedListener {
