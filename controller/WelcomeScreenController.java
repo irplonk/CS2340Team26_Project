@@ -96,6 +96,11 @@ public class WelcomeScreenController implements Initializable, MapComponentIniti
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (isManager()) {
+            viewHistoryReport.setVisible(true);
+        } else {
+            viewHistoryReport.setVisible(false);
+        }
         mapView.addMapInializedListener(this);
     }
 
@@ -187,11 +192,11 @@ public class WelcomeScreenController implements Initializable, MapComponentIniti
      */
     @FXML
     private void handleViewHistoryReport() {
-//        if (isManager()) {
-//            viewHistoryReport.setVisible(true);
-//        } else {
-//            viewHistoryReport.setVisible(false);
-//        }
+        if (isManager()) {
+            viewHistoryReport.setVisible(true);
+        } else {
+            viewHistoryReport.setVisible(false);
+        }
         mainApplication.showViewHistoryReportInputScreen();
     }
 
