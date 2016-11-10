@@ -16,6 +16,7 @@ import model.Report;
 public class ViewReportController {
 
     private Stage viewReportStage;
+    private MainFXApplication mainFXApplication;
 
     /**references to the widgets in the fxml file */
     @FXML
@@ -33,6 +34,12 @@ public class ViewReportController {
         items.addAll(WaterSourceReportController.reportList);
         list.setItems(items);
     }
+
+    /**
+     * Sets the main application
+     * @param mainFXApplication the main application
+     */
+    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
 
     /**
      * Sets up view report screen stage

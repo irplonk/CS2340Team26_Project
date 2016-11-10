@@ -22,6 +22,7 @@ import java.util.Objects;
 public class HistoryReportInputController {
 
     private Stage viewHistoryReportStage;
+    private MainFXApplication mainFXApplication;
 
     private String month;
     private Double ppmval;
@@ -59,6 +60,12 @@ public class HistoryReportInputController {
         listppm.add("VIRUS");
         ppm.setItems(listppm);
     }
+
+    /**
+     * Sets the main application
+     * @param mainFXApplication the main application
+     */
+    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
 
     /**
      * Sets up view report screen stage

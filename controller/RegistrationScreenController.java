@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class RegistrationScreenController {
 
     private Stage registrationStage;
+    private MainFXApplication mainFXApplication;
 
     @FXML
     private Button cancel;
@@ -62,6 +63,12 @@ public class RegistrationScreenController {
         confirmPass.setText("pass");
         userType.setValue(list.get(0));
     }
+
+    /**
+     * Sets the main application
+     * @param mainFXApplication the main application
+     */
+    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
 
     /**
      * Sets up registration screen stage

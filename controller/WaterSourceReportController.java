@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class WaterSourceReportController {
 
     private Stage waterSourceReportStage;
+    private MainFXApplication mainFXApplication;
 
     public static AuthorizedUser user;
 
@@ -94,6 +95,12 @@ public class WaterSourceReportController {
         }
         waterSourceReportStage.close();
     }
+
+    /**
+     * Sets the main application
+     * @param mainFXApplication the main application
+     */
+    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
 
     /**
      * Checks if the input is valid

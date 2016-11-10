@@ -19,6 +19,7 @@ import model.*;
 public class WaterPurityReportController {
 
     private Stage waterPurityReportStage;
+    private MainFXApplication mainFXApplication;
 
     public static AuthorizedUser user;
 
@@ -52,6 +53,12 @@ public class WaterPurityReportController {
         list.addAll(OverallWaterCondition.values());
         overallWaterCondition.setItems(list);
     }
+
+    /**
+     * Sets the main application
+     * @param mainFXApplication the main application
+     */
+    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
 
     /**
      * Sets up water source report screen stage

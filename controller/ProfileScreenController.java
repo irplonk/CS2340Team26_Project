@@ -17,6 +17,7 @@ import model.*;
 public class ProfileScreenController {
 
     private Stage profileScreenStage;
+    private MainFXApplication mainFXApplication;
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
@@ -109,6 +110,12 @@ public class ProfileScreenController {
             return false;
         }
     }
+
+    /**
+     * Sets the main application
+     * @param mainFXApplication the main application
+     */
+    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
 
 
     /**
