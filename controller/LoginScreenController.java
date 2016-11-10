@@ -1,19 +1,18 @@
 package controller;
 
 import fxapp.MainFXApplication;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import model.*;
 import java.util.ArrayList;
 
 
 /**
- * Created by Sam on 9/22/2016.
+ * @author Sam Sok
+ * @version 1.0
  */
 public class LoginScreenController {
 
@@ -99,13 +98,13 @@ public class LoginScreenController {
     private boolean checkUserInfo() {
         boolean check = false;
         if (checkList != null) {
-            for (int i = 0; i < checkList.size(); i++) {
-                if (userID.getText().equals(checkList.get(i).getID()) && password.getText().equals(checkList.get(i).getPassword())) {
+            for (AuthorizedUser aCheckList : checkList) {
+                if (userID.getText().equals(aCheckList.getID()) && password.getText().equals(aCheckList.getPassword())) {
                     check = true;
-                    ProfileScreenController.user = checkList.get(i);
-                    WaterSourceReportController.user = checkList.get(i);
-                    WaterPurityReportController.user = checkList.get(i);
-                    WelcomeScreenController.user = checkList.get(i);
+                    ProfileScreenController.user = aCheckList;
+                    WaterSourceReportController.user = aCheckList;
+                    WaterPurityReportController.user = aCheckList;
+                    WelcomeScreenController.user = aCheckList;
                 }
             }
         }
@@ -115,9 +114,9 @@ public class LoginScreenController {
             alert.setTitle("Invalid Username and/or Password.");
             alert.setContentText("Entered Username and/or Password is incorrect.");
             alert.showAndWait();
-            return check;
+            return false;
         }
-        return check;
+        return true;
     }
 
     /**

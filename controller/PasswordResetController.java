@@ -1,31 +1,22 @@
 package controller;
 
 import fxapp.MainFXApplication;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
-import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
-import model.*;
-import java.util.ArrayList;
-import javax.mail.*;
-import javax.mail.internet.*;
-import java.util.Properties;
-import java.util.UUID;
 
 
 /**
- * Created by Kevin on 10/30/2016.
+ * @author Isabella Plonk
+ * @version 1.0
  */
 public class PasswordResetController {
 
-    /** reference back to mainApplication if needed */
-    private MainFXApplication mainApplication;
-
     private Stage passwordResetStage;
+    private MainFXApplication mainApplication;
+    private String code;
 
     @FXML
     private TextField firstPass;
@@ -35,8 +26,6 @@ public class PasswordResetController {
 
     @FXML
     private Button resetButton;
-
-    private String code;
 
     /**
      * Initialize password recovery screen, hide button
@@ -49,7 +38,7 @@ public class PasswordResetController {
     /**
      * Setter for password reset code, provided as a UUID from
      * PasswordRecoveryController
-     * @param code
+     * @param code the password reset code
      */
     public void setCode(String code) {
         this.code = code;
@@ -69,7 +58,6 @@ public class PasswordResetController {
      * @param mainFXApplication  a reference (link) to our main class
      */
     public void setMainApp(MainFXApplication mainFXApplication) {
-
         mainApplication = mainFXApplication;
     }
 

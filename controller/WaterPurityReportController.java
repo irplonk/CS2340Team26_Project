@@ -12,15 +12,12 @@ import java.util.ArrayList;
 import model.*;
 
 /**
- * Created by Isabella on 10/8/16.
+ * @author Isabella Plonk
+ * @version 1.0
  */
 public class WaterPurityReportController {
-    /** reference back to mainApplication if needed */
-    private MainFXApplication mainApplication;
 
     private Stage waterPurityReportStage;
-
-    private Report report;
 
     public static AuthorizedUser user;
 
@@ -40,9 +37,9 @@ public class WaterPurityReportController {
     private TextField contaminantPPM;
 
     @FXML
-    private ComboBox<OverallWaterCondition> overallWaterCondition = new ComboBox<>();
+    private final ComboBox<OverallWaterCondition> overallWaterCondition = new ComboBox<>();
 
-    public static ArrayList<Report> reportList = new ArrayList<>();
+    public static final ArrayList<Report> reportList = new ArrayList<>();
 
     private final ObservableList<OverallWaterCondition> list = FXCollections.observableArrayList();
 
@@ -53,14 +50,6 @@ public class WaterPurityReportController {
     private void initialize() {
         list.addAll(OverallWaterCondition.values());
         overallWaterCondition.setItems(list);
-    }
-
-    /**
-     * Allow for calling back to the main application code if necessary
-     * @param main the reference to the FX Application instance
-     * */
-    public void setMainApp(MainFXApplication main) {
-        mainApplication = main;
     }
 
     /**
@@ -85,7 +74,7 @@ public class WaterPurityReportController {
         if (isInputValid()) {
             double virus = Double.parseDouble(virusPPM.getText());
             double contaminant = Double.parseDouble(contaminantPPM.getText());
-            report = new WaterPurityReport(this.user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), overallWaterCondition.getValue(), virus, contaminant);
+            Report report = new WaterPurityReport(user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), overallWaterCondition.getValue(), virus, contaminant);
             reportList.add(report);
         }
         waterPurityReportStage.close();

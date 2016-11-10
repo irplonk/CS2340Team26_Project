@@ -1,11 +1,10 @@
 package model;
 
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 /**
- * Created by Shivani on 10/2/16.
+ * @author Shivani Upadhayay
+ * @version 1.0
  */
-//Bottled, Well, Stream, Lake, Spring, Other
 public enum WaterType {
     BOTTLED ("bottled"),
     WELL ("well"),

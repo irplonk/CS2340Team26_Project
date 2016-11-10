@@ -1,7 +1,8 @@
 package model;
 
 /**
- * Created by Isabella on 10/6/16.
+ * @author Isabella Plonk
+ * @version 1.0
  */
 public enum  OverallWaterCondition {
     SAFE("safe"),

@@ -29,14 +29,11 @@ public class PasswordCheckTest {
             @Override
             public void run() {
                 new JFXPanel();
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        new MainFXApplication().start(new Stage());
-                        controller = new RegistrationScreenController();
-                        controller.initialize();
-                        assertTrue("The password and the confirmation password should be equal", controller.passwordCheck());
-                    }
+                Platform.runLater(() -> {
+                    new MainFXApplication().start(new Stage());
+                    controller = new RegistrationScreenController();
+                    controller.initialize();
+                    assertTrue("The password and the confirmation password should be equal", controller.passwordCheck());
                 });
             }
         };
@@ -49,16 +46,13 @@ public class PasswordCheckTest {
             @Override
             public void run() {
                 new JFXPanel();
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        new MainFXApplication().start(new Stage());
-                        controller = new RegistrationScreenController();
-                        controller.initialize();
-                        controller.getPassword().setText("pass1");
-                        controller.getConfirmPass().setText("pass2");
-                        assertFalse("The password and the confirmation password should not be equal", controller.passwordCheck());
-                    }
+                Platform.runLater(() -> {
+                    new MainFXApplication().start(new Stage());
+                    controller = new RegistrationScreenController();
+                    controller.initialize();
+                    controller.getPassword().setText("pass1");
+                    controller.getConfirmPass().setText("pass2");
+                    assertFalse("The password and the confirmation password should not be equal", controller.passwordCheck());
                 });
             }
         };

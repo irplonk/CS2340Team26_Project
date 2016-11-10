@@ -4,12 +4,9 @@ import fxapp.MainFXApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.*;
-import java.util.List;
 
 /**
  * The controller for the profile page screen
@@ -18,9 +15,6 @@ import java.util.List;
  */
 
 public class ProfileScreenController {
-
-    /** reference back to mainApplication if needed */
-    private MainFXApplication mainApplication;
 
     private Stage profileScreenStage;
 
@@ -48,32 +42,24 @@ public class ProfileScreenController {
     @FXML
     private Button Save;
 
-
-    /**
-     * allow for calling back to the main application code if necessary
-     * @param main the reference to the FX Application instance
-     * */
-    public void setMainApp(MainFXApplication main) {
-        mainApplication = main;
-    }
-
     /**
      * Sets up profile screen screen stage
      * @param profileScreenStage sets the stage for this dialog
      */
     public void setProfileScreenStage(Stage profileScreenStage) {
         this.profileScreenStage = profileScreenStage;
-        this.Name.setText(this.user.getName());
-        this.ID.setText(this.user.getID());
-        this.EmailAddress.setText(this.user.getEmailaddress());
-        this.HomeAddress.setText(this.user.getHomeaddress());
-        this.Title.setText(this.user.getTitle());
+        this.Name.setText(user.getName());
+        this.ID.setText(user.getID());
+        this.EmailAddress.setText(user.getEmailaddress());
+        this.HomeAddress.setText(user.getHomeaddress());
+        this.Title.setText(user.getTitle());
     }
 
     /**
      * @param user sets the user
      */
-    public void setUser(AuthorizedUser user) {this.user = user;}
+    public void setUser(AuthorizedUser user) {
+        ProfileScreenController.user = user;}
 
     /**
      * Called when user clicks cancel

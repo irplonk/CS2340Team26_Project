@@ -9,32 +9,29 @@ import fxapp.MainFXApplication;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import model.*;
 
 import netscape.javascript.JSObject;
 
-import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import model.Report;
 
 /**
- * Created by Sam on 10/16/2016.
+ * @author Sam Sok
+ * @version 1.0
  */
 public class MapScreenController implements Initializable, MapComponentInitializedListener{
+
+    private Window mainStage;
 
     @FXML
     private GoogleMapView mapView;
 
     private GoogleMap map;
-
-    private Window mainStage;
 
     private MainFXApplication mainApplication;
 
@@ -54,8 +51,8 @@ public class MapScreenController implements Initializable, MapComponentInitializ
 
     /**
      * Sets the stage and the MainFXApp
-     * @param stage
-     * @param app
+     * @param stage the primary stage
+     * @param app the main application
      */
     public void setCallbacks(Window stage, MainFXApplication app) {
         mainStage = stage;

@@ -1,7 +1,8 @@
 package tests;
 
 /**
- * Created by Kevin on 11/4/2016.
+ * @author Kevin Wang
+ * @version 1.0
  */
-public class KevinTests {
+class KevinTests {
 }

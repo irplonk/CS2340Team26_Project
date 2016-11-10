@@ -1,22 +1,16 @@
 package fxapp;
 
 import controller.*;
-import javafx.scene.chart.LineChart;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import model.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.swing.text.View;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,9 +29,6 @@ public class MainFXApplication extends Application {
 
     /** the main container for the application window */
     private Stage mainScreen;
-
-    /** the main layout for the main window */
-    private BorderPane rootLayout;
 
     private ArrayList<AuthorizedUser> checkList;
 
@@ -66,7 +57,8 @@ public class MainFXApplication extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainFXApplication.class.getResource("../view/MainScreen.fxml"));
-            rootLayout = loader.load();
+            /* the main layout for the main window */
+            BorderPane rootLayout = loader.load();
 
             // Give the controller access to the main app.
             MainScreenController controller = loader.getController();

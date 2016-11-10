@@ -17,11 +17,10 @@ import model.WaterType;
 import java.util.ArrayList;
 
 /**
- * Created by Isabella on 10/6/16.
+ * @author Isabella Plonk
+ * @version 1.0
  */
 public class WaterSourceReportController {
-    /** reference back to mainApplication if needed */
-    private MainFXApplication mainApplication;
 
     private Stage waterSourceReportStage;
 
@@ -37,18 +36,16 @@ public class WaterSourceReportController {
     private TextField longitude;
 
     @FXML
-    private ComboBox<WaterType> waterType = new ComboBox<>();
+    private final ComboBox<WaterType> waterType = new ComboBox<>();
 
     @FXML
-    private ComboBox<WaterCondition> waterCondition = new ComboBox<>();
-
-    private Report report;
+    private final ComboBox<WaterCondition> waterCondition = new ComboBox<>();
 
     private final ObservableList<WaterType> tList = FXCollections.observableArrayList();
 
     private final ObservableList<WaterCondition> cList = FXCollections.observableArrayList();
 
-    public static ArrayList<Report> reportList = new ArrayList<>();
+    public static final ArrayList<Report> reportList = new ArrayList<>();
 
     private WaterSourceReport sourceReport;
 
@@ -66,14 +63,6 @@ public class WaterSourceReportController {
     }
 
     /**
-     * Allow for calling back to the main application code if necessary
-     * @param main the reference to the FX Application instance
-     * */
-    public void setMainApp(MainFXApplication main) {
-        mainApplication = main;
-    }
-
-    /**
      * Sets up water source report screen stage
      * @param waterSourceReportStage sets the stage for this dialog
      */
@@ -82,7 +71,8 @@ public class WaterSourceReportController {
     /**
      * @param user sets the user
      */
-    public void setUser(AuthorizedUser user) {this.user = user;}
+    public void setUser(AuthorizedUser user) {
+        WaterSourceReportController.user = user;}
 
     /**
      * Called when user clicks cancel
@@ -98,7 +88,7 @@ public class WaterSourceReportController {
     @FXML
     public void handleSubmitReport() {
         if (isInputValid()) {
-            report = new WaterSourceReport(this.user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), waterType.getValue(), waterCondition.getValue());
+            Report report = new WaterSourceReport(user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), waterType.getValue(), waterCondition.getValue());
             reportList.add(report);
         }
         waterSourceReportStage.close();

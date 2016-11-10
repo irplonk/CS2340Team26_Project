@@ -1,14 +1,15 @@
 package model;
 
 /**
- * Created by Isabella on 10/1/16.
+ * @author Isabella Plonk
+ * @version 1.0
  */
 public class Worker extends User {
 
     /**
      * No-args constructor for Worker object
      */
-    public Worker() {
+    Worker() {
     }
 
     /**

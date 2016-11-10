@@ -1,9 +1,8 @@
 package model;
 
-import org.omg.PortableInterceptor.USER_EXCEPTION;
-
 /**
- * Created by Shivani on 10/2/16.
+ * @author Shivani Upadhayay
+ * @version 1.0
  */
 public enum WaterCondition {
     WASTE ("waste"),

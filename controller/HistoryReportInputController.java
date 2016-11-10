@@ -9,29 +9,28 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.HistoryReport;
-import model.UserType;
 
 import java.util.Hashtable;
+import java.util.Objects;
 
 /**
- * Created by Shivani Upadhayay on 11/1/2016.
+ * @author Shivani Upadhayay
+ * @version 1.0
  */
+
 public class HistoryReportInputController {
 
-    /** a link back to the main application class */
-    private MainFXApplication mainApplication;
-
-    private Stage viewHistoryReportInputStage;
+    private Stage viewHistoryReportStage;
 
     private String month;
     private Double ppmval;
     private HistoryReport historyReport;
 
-    private HistoryReport backingArray[] = new HistoryReport[10];
-    Hashtable<String, Double> historicalReports = new Hashtable<String, Double>();
+    private final HistoryReport[] backingArray = new HistoryReport[10];
+    private final Hashtable<String, Double> historicalReports = new Hashtable<>();
 
     @FXML
-    private ComboBox<String> ppm = new ComboBox<>();
+    private final ComboBox<String> ppm = new ComboBox<>();
 
     @FXML
     private Button viewHistoryReport;
@@ -65,15 +64,7 @@ public class HistoryReportInputController {
      * @param viewHistoryReportStage sets the strage for this dialog
      */
     public void setViewHistoryReportInputStage(Stage viewHistoryReportStage) {
-        this.viewHistoryReportInputStage = viewHistoryReportStage;
-    };
-
-    /**
-     * Allow for calling back to the main application code if necessary
-     * @param main the reference to the FX Application instance
-     * */
-    public void setMainApp(MainFXApplication main) {
-        mainApplication = main;
+        this.viewHistoryReportStage = viewHistoryReportStage;
     }
 
 /*    public void addReports() {
@@ -97,11 +88,11 @@ public class HistoryReportInputController {
      */
     private boolean doesDataMatch() {
         String errorMessage = "";
-        for (int i = 0; i < backingArray.length; i++) {
-            if (latitude.getText() == Double.toString(backingArray[i].getLatitude())
-                    && longitude.getText() == Double.toString(backingArray[i].getLongitude())
-                    && location.getText() == backingArray[i].getLocation()
-                    && year.getText() == Double.toString(backingArray[i].getYear())) {
+        for (HistoryReport aBackingArray : backingArray) {
+            if (Objects.equals(latitude.getText(), Double.toString(aBackingArray.getLatitude()))
+                    && Objects.equals(longitude.getText(), Double.toString(aBackingArray.getLongitude()))
+                    && Objects.equals(location.getText(), aBackingArray.getLocation())
+                    && Objects.equals(year.getText(), Double.toString(aBackingArray.getYear()))) {
                 return true;
             } else {
                 errorMessage += "Not a valid entry!\n";

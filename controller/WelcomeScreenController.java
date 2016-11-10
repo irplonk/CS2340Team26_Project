@@ -9,19 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Button;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Window;
 import model.*;
 import netscape.javascript.JSObject;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -70,6 +64,9 @@ public class WelcomeScreenController implements Initializable, MapComponentIniti
 
     private ArrayList<Report> sourceReport;
 
+    public WelcomeScreenController() {
+    }
+
     /**
      * allow for calling back to the main application code if necessary
      * @param main the reference to the FX Application instance
@@ -80,7 +77,7 @@ public class WelcomeScreenController implements Initializable, MapComponentIniti
 
     /**
      * Sets up welcome screen stage
-     * @param welcomeStage sets the strage for this dialog
+     * @param welcomeStage sets the stage for this dialog
      */
     public void setWelcomeStage(Stage welcomeStage) {this.welcomeStage = welcomeStage;}
 
@@ -200,7 +197,7 @@ public class WelcomeScreenController implements Initializable, MapComponentIniti
 
     private boolean isManager() {
         System.out.print(user.getClass().getName());
-        return (user.getClass().getName() == "model.Manager");
+        return (Objects.equals(user.getClass().getName(), "model.Manager"));
     }
     /**
      * Called automatically after logging in

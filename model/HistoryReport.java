@@ -1,7 +1,8 @@
 package model;
 
 /**
- * Created by Shivani Upadhayay on 11/1/2016.
+ * @author Shivani Upadhayay
+ * @version 1.0
  */
 public class HistoryReport extends Report {
 

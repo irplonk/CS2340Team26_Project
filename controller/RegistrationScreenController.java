@@ -20,9 +20,6 @@ import java.util.ArrayList;
  */
 public class RegistrationScreenController {
 
-    /** reference back to mainApplication if needed */
-    private MainFXApplication mainApplication;
-
     private Stage registrationStage;
 
     @FXML
@@ -41,22 +38,22 @@ public class RegistrationScreenController {
     private PasswordField password;
 
     @FXML
-    private ComboBox<UserType> userType = new ComboBox<>();
+    private ComboBox<UserType> userType;
 
     @FXML
-    private TextField confirmPass;
+    private final TextField confirmPass = new TextField();
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
     private static AuthorizedUser user;
 
-    ArrayList<AuthorizedUser> authorizedUserList = new ArrayList<>();
+    private final ArrayList<AuthorizedUser> authorizedUserList = new ArrayList<>();
 
     /**
      * Called automatically after load
      */
     @FXML
-    private void initialize() {
+    public void initialize() {
         list.addAll(UserType.values());
         userType.setItems(list);
         name.setText("Default");
@@ -66,18 +63,9 @@ public class RegistrationScreenController {
         userType.setValue(list.get(0));
     }
 
-
-    /**
-     * Allow for calling back to the main application code if necessary
-     * @param main the reference to the FX Application instance
-     * */
-    public void setMainApp(MainFXApplication main) {
-        mainApplication = main;
-    }
-
     /**
      * Sets up registration screen stage
-     * @param registrationStage sets the strage for this dialog
+     * @param registrationStage sets the stage for this dialog
      */
     public void setRegistrationStage(Stage registrationStage) {this.registrationStage = registrationStage;}
 
@@ -122,14 +110,10 @@ public class RegistrationScreenController {
      * Returns true if they are or false otherwise
      * @return true if password are identical
      */
-    private boolean passwordCheck() {
+    public boolean passwordCheck() {
         boolean check = false;
         if (password.getText().equals(confirmPass.getText())) {
             check = true;
-        }
-
-        if (check) {
-            return check;
         } else {
             // Show the error message if bad data
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -139,9 +123,8 @@ public class RegistrationScreenController {
             alert.setContentText("The passwords you have entered do not match.");
 
             alert.showAndWait();
-
-            return false;
         }
+        return check;
     }
 
     /**
@@ -192,6 +175,14 @@ public class RegistrationScreenController {
      * @param user the AuthorizedUser to set user to
      */
     public void setUser(AuthorizedUser user) {
-        this.user = user;
+        RegistrationScreenController.user = user;
+    }
+
+    public PasswordField getPassword() {
+        return password;
+    }
+
+    public TextField getConfirmPass() {
+        return confirmPass;
     }
 }

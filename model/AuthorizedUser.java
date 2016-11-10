@@ -5,17 +5,17 @@ package model;
  * Edited by Shivani on 10/3/16.
  */
 public abstract class AuthorizedUser {
-    protected String name;
-    protected String id;
-    protected String password;
-    protected String emailaddress;
-    protected String homeaddress;
-    protected String title;
+    String name;
+    String id;
+    String password;
+    private String emailaddress;
+    private String homeaddress;
+    private String title;
 
     /**
      * No args constructor
      */
-    public AuthorizedUser() {
+    AuthorizedUser() {
     }
 
     /**
@@ -24,7 +24,7 @@ public abstract class AuthorizedUser {
      * @param id String representation of AuthorizedUser id
      * @param password String representation of AuthorizedUser password
      */
-    public AuthorizedUser(String name, String id, String password) {
+    AuthorizedUser(String name, String id, String password) {
         this.name = name;
         this.password = password;
         this.id = id;

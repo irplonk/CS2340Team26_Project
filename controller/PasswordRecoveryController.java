@@ -1,16 +1,12 @@
 package controller;
 
 import fxapp.MainFXApplication;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
-import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
-import model.*;
-import java.util.ArrayList;
+
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
@@ -18,7 +14,8 @@ import java.util.UUID;
 
 
 /**
- * Created by Kevin on 10/30/2016.
+ * @author Kevin Wang
+ * @version 1.0
  */
 public class PasswordRecoveryController {
 
@@ -106,7 +103,7 @@ public class PasswordRecoveryController {
     @FXML
     public void handleSendCode() {
         if (inputEmail.getText() != null && !inputEmail.getText().isEmpty()) {
-            code = this.sendEmail(inputEmail.getText());
+            code = sendEmail(inputEmail.getText());
             System.out.println(code);
             resetButton.setVisible(true);
         } else {

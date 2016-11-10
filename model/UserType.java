@@ -1,15 +1,14 @@
 package model;
 
-import org.omg.PortableInterceptor.USER_EXCEPTION;
-
 /**
- * Created by Isabella on 10/1/16.
+ * @author Isabella Plonk
+ * @version 1.0
  */
 public enum UserType {
     USER ("user"),
     WORKER("worker"),
     MANAGER("manager"),
-    ADMINISTRATOR("adminsitrator");
+    ADMINISTRATOR("administrator");
 
     /** the representation of the user type */
     private String name;
