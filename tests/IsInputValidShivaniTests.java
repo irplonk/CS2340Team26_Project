@@ -312,5 +312,180 @@ public class IsInputValidShivaniTests {
         Assert.assertFalse("user id cannot be empty", controller.isInputValid());
     }
 
+    @Test
+    public void testFalseValidInput18() {
+        controller.getFirstName().setText(null);
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText("password");
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.USER);
+
+        Assert.assertFalse("first name cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput19() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText(null);
+        controller.getPassword().setText("password");
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.USER);
+
+        Assert.assertFalse("last name cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput20() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText(null);
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.USER);
+
+        Assert.assertFalse("password cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput21() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText("password");
+        controller.getUserID().setText(null);
+        controller.getUserType().setValue(userType.USER);
+
+        Assert.assertFalse("user id cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput22() {
+        controller.getFirstName().setText(null);
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText("password");
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.MANAGER);
+
+        Assert.assertFalse("first name cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput23() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText(null);
+        controller.getPassword().setText("password");
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.MANAGER);
+
+        Assert.assertFalse("last name cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput24() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText(null);
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.MANAGER);
+
+        Assert.assertFalse("password cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput25() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText("password");
+        controller.getUserID().setText(null);
+        controller.getUserType().setValue(userType.MANAGER);
+
+        Assert.assertFalse("user id cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput26() {
+        controller.getFirstName().setText(null);
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText("password");
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.ADMINISTRATOR);
+
+        Assert.assertFalse("first name cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput27() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText(null);
+        controller.getPassword().setText("password");
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.ADMINISTRATOR);
+
+        Assert.assertFalse("last name cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput28() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText(null);
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.ADMINISTRATOR);
+
+        Assert.assertFalse("password cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput29() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText("password");
+        controller.getUserID().setText(null);
+        controller.getUserType().setValue(userType.ADMINISTRATOR);
+
+        Assert.assertFalse("user id cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput30() {
+        controller.getFirstName().setText(null);
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText("password");
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.WORKER);
+
+        Assert.assertFalse("first name cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput31() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText(null);
+        controller.getPassword().setText("password");
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.WORKER);
+
+        Assert.assertFalse("last name cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput32() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText(null);
+        controller.getUserID().setText("");
+        controller.getUserType().setValue(userType.WORKER);
+
+        Assert.assertFalse("password cannot be null", controller.isInputValid());
+    }
+
+    @Test
+    public void testFalseValidInput33() {
+        controller.getFirstName().setText("firstname");
+        controller.getLastName().setText("lastname");
+        controller.getPassword().setText("password");
+        controller.getUserID().setText(null);
+        controller.getUserType().setValue(userType.WORKER);
+
+        Assert.assertFalse("user id cannot be null", controller.isInputValid());
+    }
 
 }
