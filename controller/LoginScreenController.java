@@ -96,7 +96,7 @@ public class LoginScreenController {
     /**
      * Checks userID and password entered by user.
      */
-    private boolean checkUserInfo() {
+    public boolean checkUserInfo() {
         boolean check = false;
         if (checkList != null) {
             for (AuthorizedUser aCheckList : checkList) {
@@ -151,5 +151,19 @@ public class LoginScreenController {
 
             return false;
         }
+    }
+
+    /**
+     * For junit testing purposes
+     */
+    public void setUserID(String ID) {
+        userID.setText(ID);
+    }
+
+    /**
+     * For junit testing purposes
+     */
+    public void setUserPassword(String password) {
+        this.password.setText(password);
     }
 }
