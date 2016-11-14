@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import model.Report;
 
 /**
- * Controller for view report
+ * Controller for view source report
  * @author Isabella Plonk
  * @version 1.0
  */
