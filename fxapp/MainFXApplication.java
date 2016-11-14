@@ -103,7 +103,7 @@ public class MainFXApplication extends Application {
             LoginScreenController controller = loader.getController();
             controller.setLoginStage(dialogStage);
             controller.setMainApp(this);
-            controller.setCheckList(checkList);
+            //controller.setCheckList(checkList);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -172,7 +172,6 @@ public class MainFXApplication extends Application {
             RegistrationScreenController controller = loader.getController();
             controller.setRegistrationStage(dialogStage);
             controller.setMainApp(this);
-            checkList = controller.getUserList();
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -180,6 +179,7 @@ public class MainFXApplication extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     /**

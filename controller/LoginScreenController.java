@@ -7,6 +7,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
 import model.*;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -66,14 +71,37 @@ public class LoginScreenController {
      * Called when user clicks login.
      */
     @FXML
-    public void handleLoginPressed() {
-        if (isInputValid()) {
+    public void handleLoginPressed() throws SQLException, ClassNotFoundException{
+/*        if (isInputValid()) {
             if (checkUserInfo()) {
                 //loginStage.close();
                 mainApplication.showWelcomeScreen();
                 loginStage.close();
                 isClicked = true;
             }
+        }*/
+        if (isInputValid()) {
+
+            Connection connection = Database.getConnection();
+
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE userid = '" + userID.getText() + "' AND password = '"
+                    + password.getText() + "'");
+
+            if (rs.next()) {
+                loginStage.close();
+                User.id = userID.getText();
+                User.title = rs.getString("usertype");
+                mainApplication.showWelcomeScreen();
+                isClicked = true;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Invalid Username and/or Password.");
+                alert.setContentText("Entered Username and/or Password is incorrect.");
+                alert.showAndWait();
+            }
+
+            connection.close();
         }
     }
 
@@ -96,7 +124,7 @@ public class LoginScreenController {
     /**
      * Checks userID and password entered by user.
      */
-    private boolean checkUserInfo() {
+    public boolean checkUserInfo() {
         boolean check = false;
         if (checkList != null) {
             for (AuthorizedUser aCheckList : checkList) {
@@ -151,5 +179,19 @@ public class LoginScreenController {
 
             return false;
         }
+    }
+
+    /**
+     * For junit testing purposes
+     */
+    public void setUserID(String ID) {
+        userID.setText(ID);
+    }
+
+    /**
+     * For junit testing purposes
+     */
+    public void setUserPassword(String password) {
+        this.password.setText(password);
     }
 }
