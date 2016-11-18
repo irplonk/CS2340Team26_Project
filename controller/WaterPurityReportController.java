@@ -8,20 +8,25 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-import java.util.ArrayList;
 import model.*;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
- * Controller for water purity report
- * @author Isabella Plonk
- * @version 1.0
+ * Created by Isabella on 10/8/16.
  */
 public class WaterPurityReportController {
+    /** reference back to mainApplication if needed */
+    private MainFXApplication mainApplication;
 
     private Stage waterPurityReportStage;
-    private MainFXApplication mainFXApplication;
 
-    public static AuthorizedUser user;
+    private Report report;
 
     @FXML
     private TextField waterLocation;
@@ -39,9 +44,7 @@ public class WaterPurityReportController {
     private TextField contaminantPPM;
 
     @FXML
-    private final ComboBox<OverallWaterCondition> overallWaterCondition = new ComboBox<>();
-
-    public static final ArrayList<Report> reportList = new ArrayList<>();
+    private ComboBox<OverallWaterCondition> overallWaterCondition = new ComboBox<>();
 
     private final ObservableList<OverallWaterCondition> list = FXCollections.observableArrayList();
 
@@ -55,10 +58,12 @@ public class WaterPurityReportController {
     }
 
     /**
-     * Sets the main application
-     * @param mainFXApplication the main application
-     */
-    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
+     * Allow for calling back to the main application code if necessary
+     * @param main the reference to the FX Application instance
+     * */
+    public void setMainApp(MainFXApplication main) {
+        mainApplication = main;
+    }
 
     /**
      * Sets up water source report screen stage
@@ -78,12 +83,18 @@ public class WaterPurityReportController {
      * Called when user clicks create account
      */
     @FXML
-    public void handleSubmitReport() {
+    public void handleSubmitReport() throws SQLException, ClassNotFoundException {
         if (isInputValid()) {
             double virus = Double.parseDouble(virusPPM.getText());
             double contaminant = Double.parseDouble(contaminantPPM.getText());
-            Report report = new WaterPurityReport(user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), overallWaterCondition.getValue(), virus, contaminant);
-            reportList.add(report);
+
+            Connection connection = Database.getConnection();
+
+            Statement stmt = connection.createStatement();
+
+            stmt.executeUpdate("INSERT INTO WaterReports VALUES (Null, CURRENT_TIMESTAMP, '"
+                    + Double.parseDouble(latitude.getText()) + "', '" + Double.parseDouble(longitude.getText()) +
+                    "', '" + waterLocation.getText() + "', '" + overallWaterCondition.getValue() + "', Null, '" +  virus + "', '" + contaminant + "')");
         }
         waterPurityReportStage.close();
     }

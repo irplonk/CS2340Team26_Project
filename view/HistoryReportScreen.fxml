@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<LineChart prefHeight="552.0" prefWidth="750.0" title="PPM History Report " xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <xAxis>
-        <CategoryAxis autoRanging="false" label="Month" side="BOTTOM" tickLabelGap="10.0" />
-    </xAxis>
-    <yAxis>
-        <NumberAxis label="PPM" side="LEFT" />
-    </yAxis>
-</LineChart>
+        <?import javafx.scene.chart.*?>
+        <?import java.lang.*?>
+        <?import javafx.scene.shape.*?>
+
+        <LineChart prefHeight="552.0" prefWidth="750.0" title="PPM History Report " xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <xAxis>
+            <CategoryAxis autoRanging="false" label="Month" side="BOTTOM" tickLabelGap="10.0" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="PPM" side="LEFT" />
+        </yAxis>
+    </LineChart>

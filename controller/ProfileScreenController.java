@@ -4,24 +4,34 @@ import fxapp.MainFXApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.*;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
 /**
- * Controller for profile screen
- * @author Shivani Upadhayay
+ * The controller for the profile page screen
+ * Created by Shivani on 10/3/16
  * @version 1.0
  */
 
 public class ProfileScreenController {
 
+    /** reference back to mainApplication if needed */
+    private MainFXApplication mainApplication;
+
     private Stage profileScreenStage;
-    private MainFXApplication mainFXApplication;
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
-    public static AuthorizedUser user;
+    public static User user;
 
     @FXML
     private TextField Name;
@@ -38,35 +48,60 @@ public class ProfileScreenController {
     @FXML
     private TextField Title;
 
-    private final ObservableList<AuthorizedUser> data = FXCollections.observableArrayList();
+    private final ObservableList<User> data = FXCollections.observableArrayList();
 
     @FXML
     private Button Save;
+
+
+    /**
+     * allow for calling back to the main application code if necessary
+     * @param main the reference to the FX Application instance
+     * */
+    public void setMainApp(MainFXApplication main) {
+        mainApplication = main;
+    }
 
     /**
      * Sets up profile screen screen stage
      * @param profileScreenStage sets the stage for this dialog
      */
-    public void setProfileScreenStage(Stage profileScreenStage) {
+    public void setProfileScreenStage(Stage profileScreenStage) throws SQLException, ClassNotFoundException {
         this.profileScreenStage = profileScreenStage;
-        this.Name.setText(user.getName());
-        this.ID.setText(user.getID());
-        this.EmailAddress.setText(user.getEmailaddress());
-        this.HomeAddress.setText(user.getHomeaddress());
-        this.Title.setText(user.getTitle());
-    }
 
-    /**
-     * @param user sets the user
-     */
-    public void setUser(AuthorizedUser user) {
-        ProfileScreenController.user = user;}
+        Connection connection = Database.getConnection();
+
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE userid = '" + User.id + "'");
+
+        if(rs.next()) {
+            this.Name.setText(rs.getString("firstname") + " " + rs.getString("lastname"));
+            this.ID.setText(rs.getString("userid"));
+
+            String email = rs.getString("email");
+            if(email != null) {
+                this.EmailAddress.setText(email);
+            }
+
+            String homeAddress = rs.getString("home_address");
+            if(homeAddress != null) {
+                this.HomeAddress.setText(homeAddress);
+            }
+
+            String title = rs.getString("title");
+            if(title != null) {
+                this.Title.setText(title);
+            }
+        }
+
+        connection.close();
+    }
 
     /**
      * Called when user clicks cancel
      */
     @FXML
-    public void handleCancel() {
+    public void handleCancel() throws SQLException, ClassNotFoundException {
         profileScreenStage.close();
     }
 
@@ -111,28 +146,23 @@ public class ProfileScreenController {
         }
     }
 
-    /**
-     * Sets the main application
-     * @param mainFXApplication the main application
-     */
-    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
-
 
     /**
      * Called when user clicks Save
      */
     @FXML
-    public void handleSave() {
-        if (isInputValid()) {
-            user.setName(Name.getText());
-            user.setID(ID.getText());
-            user.setEmailaddress(EmailAddress.getText());
-            user.setHomeaddress(HomeAddress.getText());
-            user.setTitle(Title.getText());
-        }
+    public void handleSave() throws SQLException, ClassNotFoundException {
+
+        Connection connection = Database.getConnection();
+
+        Statement stmt = connection.createStatement();
+
+        stmt.executeUpdate("Update Users SET userid = '" + ID.getText() + "', email = '" + EmailAddress.getText() + "', home_address = '"
+                + HomeAddress.getText() + "', title = '" + Title.getText() + "' WHERE userid = '" + User.id + "'");
+
+        connection.close();
 
         profileScreenStage.close();
-
     }
 
 }

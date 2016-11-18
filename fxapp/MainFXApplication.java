@@ -1,17 +1,23 @@
 package fxapp;
 
 import controller.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import model.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.text.View;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
@@ -30,7 +36,8 @@ public class MainFXApplication extends Application {
     /** the main container for the application window */
     private Stage mainScreen;
 
-    private ArrayList<AuthorizedUser> checkList;
+    /** the main layout for the main window */
+    private BorderPane rootLayout;
 
     private ArrayList<Report> reportList;
 
@@ -57,8 +64,7 @@ public class MainFXApplication extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainFXApplication.class.getResource("../view/MainScreen.fxml"));
-            /* the main layout for the main window */
-            BorderPane rootLayout = loader.load();
+            rootLayout = loader.load();
 
             // Give the controller access to the main app.
             MainScreenController controller = loader.getController();
@@ -103,7 +109,6 @@ public class MainFXApplication extends Application {
             LoginScreenController controller = loader.getController();
             controller.setLoginStage(dialogStage);
             controller.setMainApp(this);
-            //controller.setCheckList(checkList);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -140,7 +145,6 @@ public class MainFXApplication extends Application {
             WelcomeScreenController controller = loader.getController();
             controller.setWelcomeStage(dialogStage);
             controller.setMainApp(this);
-            controller.setSourceReport(reportList);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -179,13 +183,12 @@ public class MainFXApplication extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
     * Displays profile page
      */
-    public void showProfileScreen() {
+    public void showProfileScreen() throws SQLException, ClassNotFoundException {
 
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -332,9 +335,9 @@ public class MainFXApplication extends Application {
             dialogStage.setScene(scene);
 
             // Set the stage into the controller.
-            ViewPurityReportController controller = loader.getController();
-            controller.setViewPurityReportsStage(dialogStage);
-            controller.setMainApp(this);
+           // ViewPurityReportController controller = loader.getController();
+           // controller.setViewPurityReportsStage(dialogStage);
+           // controller.setMainApp(this);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -344,9 +347,6 @@ public class MainFXApplication extends Application {
         }
     }
 
-    /**
-     * Display map screen
-     */
     public void showMapScreen() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -368,68 +368,6 @@ public class MainFXApplication extends Application {
             controller.setCallbacks(dialogStage, this);
             //controller.setMainApp(this);
             controller.setSourceReport(reportList);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Display password recovery screen
-     */
-    public void showPasswordRecoveryScreen() {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApplication.class.getResource("../view/PasswordRecoveryScreen.fxml"));
-            Pane page = loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Password Recovery");
-            //dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(mainScreen);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the stage into the controller.
-            PasswordRecoveryController controller = loader.getController();
-            //controller.setWaterAvailabilityReportScreen(dialogStage);
-            controller.setMainApp(this);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Display password reset screen
-     */
-    public void showPasswordResetScreen(String code) {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFXApplication.class.getResource("../view/PasswordResetScreen.fxml"));
-            Pane page = loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Password recovery");
-            //dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(mainScreen);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the stage into the controller.
-            PasswordResetController controller = loader.getController();
-            controller.setCode(code);
-            controller.setMainApp(this);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -469,6 +407,7 @@ public class MainFXApplication extends Application {
             e.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) {
         System.setProperty("java.net.useSystemProxies", "true");

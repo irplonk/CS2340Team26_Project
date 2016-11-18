@@ -7,9 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
 /**
- * Controller for main screen
- * @author Kevin Wang
- * @version 1.0
+ * The controller for the root/main window
+ *
  */
 public class MainScreenController {
 

@@ -1,13 +1,12 @@
 package model;
 
 /**
- * @author Isabella Plonk
- * @version 1.0
+ * Created by Isabella on 10/6/16.
  */
 public class WaterPurityReport extends Report {
-    private final OverallWaterCondition overallWaterCondition;
-    private final double virusPPM;
-    private final double contaminantPPM;
+    private OverallWaterCondition overallWaterCondition;
+    private double virusPPM;
+    private double contaminantPPM;
 
     /**
      * Constructor for WaterPurityReport
@@ -50,6 +49,7 @@ public class WaterPurityReport extends Report {
     }
 
     /**
+     * @Override
      * @return a String representation of all WaterPurityReport values
      */
     public String toString() {

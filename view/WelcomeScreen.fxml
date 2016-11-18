@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.lynden.gmapsfx.GoogleMapView?>
-<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0"
-      prefWidth="658.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.60"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
+<?import java.lang.String?>
+<?import javafx.scene.text.Font?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
+    <children>
+        <Button fx:id="logout" layoutX="462.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" prefWidth="124.0" text="Logout" />
+        <Text fill="WHITE" layoutX="238.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" wrappingWidth="123.99998903274536">
+            <font>
+                <Font size="24.0" />
+            </font></Text>
+        <Button fx:id="editProfile" layoutX="462.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="33.0" prefWidth="124.0" text="Edit Profile" />
+        <Button fx:id="submitSourceReport" layoutX="300.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleSubmitSourceReport" prefHeight="33.0" prefWidth="252.0" text="Submit Water Source Report" />
+        <Button fx:id="viewReports" layoutX="129.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewReports" prefHeight="33.0" prefWidth="154.0" text="View Source Reports" />
+        <Button fx:id="submitPurityReport" layoutX="300.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleSubmitPurityReport" prefHeight="33.0" prefWidth="252.0" text="Submit Water Purity Report" />
+        <Button fx:id="viewWaterAvailReport" layoutX="129.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleViewWaterAvailReport" prefHeight="33.0" prefWidth="154.0" text="View Availability Map" />
+        <!-- <Button fx:id="viewWaterPurityReport" layoutX="129.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleViewPurityReport" prefHeight="33.0" prefWidth="154.0" text="View Purity Reports" /> -->
+        <Button fx:id="viewHistoryReport" layoutX="29.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewHistoryReport" text="View History Report" />
+
+    </children>
     <styleClass>
-        <String fx:value="label-header"/>
-        <String fx:value="background"/>
+        <String fx:value="label-header" />
+        <String fx:value="background" />
     </styleClass>
-    <Button fx:id="logout" layoutX="517.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout"
-            prefHeight="33.0" prefWidth="120.0" text="Logout"/>
-    <Button fx:id="editProfile" layoutX="381.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleEditProfile"
-            prefHeight="33.0" prefWidth="122.0" text="Edit Profile"/>
-    <Button fx:id="submitSourceReport" layoutX="37.0" layoutY="215.0" mnemonicParsing="false"
-            onAction="#handleSubmitSourceReport" prefHeight="63.0" prefWidth="152.0"
-            text="Submit Water&#10;Source Report"/>
-    <Button fx:id="viewReports" layoutX="59.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleViewReports"
-            prefHeight="80.0" prefWidth="151.0" text="View Source&#10;   Reports"/>
-    <Button fx:id="submitPurityReport" layoutX="37.0" layoutY="111.0" mnemonicParsing="false"
-            onAction="#handleSubmitPurityReport" prefHeight="65.0" prefWidth="151.0"
-            text="Submit Water&#10; Purity Report"/>
-    <Button fx:id="viewWaterAvailReport" layoutX="34.0" layoutY="15.0" mnemonicParsing="false"
-            onAction="#handleViewWaterAvailReport" prefHeight="33.0" prefWidth="195.0" text="View Availability Map"/>
-    <Button fx:id="viewWaterPurityReport" layoutX="258.0" layoutY="345.0" mnemonicParsing="false"
-            onAction="#handleViewPurityReport" prefHeight="79.0" prefWidth="153.0" text="View Purity&#10;  Reports"/>
-    <Button fx:id="viewHistoryReport" layoutX="467.0" layoutY="347.0" mnemonicParsing="false"
-            onAction="#handleViewHistoryReport" prefHeight="80.0" prefWidth="152.0" text="View History&#10;    Report"/>
-    <GoogleMapView fx:id="mapView" layoutX="210.0" layoutY="63.0" prefHeight="259.0" prefWidth="429.0"/>
 </Pane>

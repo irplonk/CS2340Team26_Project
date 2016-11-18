@@ -9,7 +9,6 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
 import model.*;
 
 import java.sql.Connection;
@@ -19,20 +18,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * Controller for registration screen
- * @author Isabella Plonk
+ * The controller for the registration screen
+ * Created by Isabella on 10/1/16
  * @version 1.0
  */
 public class RegistrationScreenController {
 
+    /** reference back to mainApplication if needed */
+    private MainFXApplication mainApplication;
+
     private Stage registrationStage;
-    private MainFXApplication mainFXApplication;
 
     @FXML
     private Button cancel;
-
-//    @FXML
-//    private TextField password;
 
     @FXML
     private Button createAccount;
@@ -42,45 +40,43 @@ public class RegistrationScreenController {
 
     @FXML
     private TextField firstName;
-    //@FXML
-    //private TextField name;
 
     @FXML
     private TextField userID;
 
     @FXML
-    private PasswordField password;
+    private TextField password;
 
     @FXML
-    private ComboBox<UserType> userType;
-
-    @FXML
-    private final TextField confirmPass = new TextField();
+    private ComboBox<UserType> userType = new ComboBox<>();
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
-    private static AuthorizedUser user;
+    private static User user;
 
-    private final ArrayList<AuthorizedUser> authorizedUserList = new ArrayList<>();
+    ArrayList<User> authorizedUserList = new ArrayList<>();
 
     /**
      * Called automatically after load
      */
     @FXML
-    public void initialize() {
+    private void initialize() {
         list.addAll(UserType.values());
         userType.setItems(list);
     }
 
+
     /**
-     * Sets the main application
-     * @param mainFXApplication the main application
-     */
-    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
+     * Allow for calling back to the main application code if necessary
+     * @param main the reference to the FX Application instance
+     * */
+    public void setMainApp(MainFXApplication main) {
+        mainApplication = main;
+    }
 
     /**
      * Sets up registration screen stage
-     * @param registrationStage sets the stage for this dialog
+     * @param registrationStage sets the strage for this dialog
      */
     public void setRegistrationStage(Stage registrationStage) {this.registrationStage = registrationStage;}
 
@@ -91,8 +87,6 @@ public class RegistrationScreenController {
     public void handleCancel() {
         registrationStage.close();
     }
-
-
 
     /**
      * Called when user clicks create account
@@ -128,32 +122,10 @@ public class RegistrationScreenController {
     }
 
     /**
-     * Checks both password fields to see if they are identical.
-     * Returns true if they are or false otherwise
-     * @return true if password are identical
-     */
-    public boolean passwordCheck() {
-        boolean check = false;
-        if (password.getText().equals(confirmPass.getText())) {
-            check = true;
-        } else {
-            // Show the error message if bad data
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(registrationStage);
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText("The passwords you have entered do not match.");
-
-            alert.showAndWait();
-        }
-        return check;
-    }
-
-    /**
      * Checks if the input is valid
      * @return returns true if input in both fields is valid
      */
-    public boolean isInputValid() {
+    private boolean isInputValid() {
         String errorMessage = "";
 
         // Checks to see if the user typed something in all of the fields
@@ -194,7 +166,7 @@ public class RegistrationScreenController {
      * Getter method for authorizedUserList
      * @return ArrayList list of authorized users
      */
-    public ArrayList<AuthorizedUser> getUserList() {
+    public ArrayList<User> getUserList() {
         return authorizedUserList;
     }
 
@@ -202,31 +174,7 @@ public class RegistrationScreenController {
      * Setter method for user
      * @param user the AuthorizedUser to set user to
      */
-    public void setUser(AuthorizedUser user) {
-        RegistrationScreenController.user = user;
-    }
-
-    public PasswordField getPassword() {
-        return password;
-    }
-
-    public TextField getConfirmPass() {
-        return confirmPass;
-    }
-
-    public TextField getFirstName() {
-        return firstName;
-    }
-
-    public TextField getLastName() {
-        return lastName;
-    }
-
-    public TextField getUserID() {
-        return userID;
-    }
-
-    public ComboBox<UserType> getUserType() {
-        return userType;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,10 +1,11 @@
 package controller;
 
 import fxapp.MainFXApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import model.*;
 
@@ -16,9 +17,7 @@ import java.util.ArrayList;
 
 
 /**
- * Controller for login screen
- * @author Sam Sok
- * @version 1.0
+ * Created by Sam on 9/22/2016.
  */
 public class LoginScreenController {
 
@@ -31,13 +30,13 @@ public class LoginScreenController {
     private TextField userID;
 
     @FXML
-    private PasswordField password;
+    private TextField password;
 
     private boolean isClicked;
 
-    private ArrayList<AuthorizedUser> checkList;
+    private ArrayList<User> checkList;
 
-    public void setCheckList(ArrayList<AuthorizedUser> checkList) {
+    public void setCheckList(ArrayList<User> checkList) {
         this.checkList = checkList;
     }
 
@@ -71,15 +70,7 @@ public class LoginScreenController {
      * Called when user clicks login.
      */
     @FXML
-    public void handleLoginPressed() throws SQLException, ClassNotFoundException{
-/*        if (isInputValid()) {
-            if (checkUserInfo()) {
-                //loginStage.close();
-                mainApplication.showWelcomeScreen();
-                loginStage.close();
-                isClicked = true;
-            }
-        }*/
+    public void handleLoginPressed() throws SQLException, ClassNotFoundException {
         if (isInputValid()) {
 
             Connection connection = Database.getConnection();
@@ -91,7 +82,7 @@ public class LoginScreenController {
             if (rs.next()) {
                 loginStage.close();
                 User.id = userID.getText();
-                User.title = rs.getString("usertype");
+                User.type = rs.getString("usertype");
                 mainApplication.showWelcomeScreen();
                 isClicked = true;
             } else {
@@ -106,46 +97,11 @@ public class LoginScreenController {
     }
 
     /**
-     * Called when the user clicks 'forgot password'.
-     */
-    @FXML
-    private void handleForgot() {
-        mainApplication.showPasswordRecoveryScreen();
-    }
-
-    /**
      * Returns true if user presses login and the information is valid.
      * @return Returns isClicked
      */
     public boolean returnIsClicked() {
         return isClicked;
-    }
-
-    /**
-     * Checks userID and password entered by user.
-     */
-    public boolean checkUserInfo() {
-        boolean check = false;
-        if (checkList != null) {
-            for (AuthorizedUser aCheckList : checkList) {
-                if (userID.getText().equals(aCheckList.getID()) && password.getText().equals(aCheckList.getPassword())) {
-                    check = true;
-                    ProfileScreenController.user = aCheckList;
-                    WaterSourceReportController.user = aCheckList;
-                    WaterPurityReportController.user = aCheckList;
-                    WelcomeScreenController.user = aCheckList;
-                }
-            }
-        }
-
-        if (!check) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Invalid Username and/or Password.");
-            alert.setContentText("Entered Username and/or Password is incorrect.");
-            alert.showAndWait();
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -179,19 +135,5 @@ public class LoginScreenController {
 
             return false;
         }
-    }
-
-    /**
-     * For junit testing purposes
-     */
-    public void setUserID(String ID) {
-        userID.setText(ID);
-    }
-
-    /**
-     * For junit testing purposes
-     */
-    public void setUserPassword(String password) {
-        this.password.setText(password);
     }
 }
