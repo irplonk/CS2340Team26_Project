@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<?import java.lang.String?>
+<?import javafx.scene.text.Font?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeScreenController">
+    <children>
+        <Button fx:id="logout" layoutX="462.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="33.0" prefWidth="124.0" text="Logout" />
+        <Text fill="WHITE" layoutX="238.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" wrappingWidth="123.99998903274536">
+            <font>
+                <Font size="24.0" />
+            </font></Text>
+        <Button fx:id="editProfile" layoutX="462.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleEditProfile" prefHeight="33.0" prefWidth="124.0" text="Edit Profile" />
+        <Button fx:id="submitSourceReport" layoutX="300.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleSubmitSourceReport" prefHeight="33.0" prefWidth="252.0" text="Submit Water Source Report" />
+        <Button fx:id="viewReports" layoutX="129.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewReports" prefHeight="33.0" prefWidth="154.0" text="View Source Reports" />
+        <Button fx:id="submitPurityReport" layoutX="300.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleSubmitPurityReport" prefHeight="33.0" prefWidth="252.0" text="Submit Water Purity Report" />
+        <Button fx:id="viewWaterAvailReport" layoutX="129.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleViewWaterAvailReport" prefHeight="33.0" prefWidth="154.0" text="View Availability Map" />
+        <!-- <Button fx:id="viewWaterPurityReport" layoutX="129.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleViewPurityReport" prefHeight="33.0" prefWidth="154.0" text="View Purity Reports" /> -->
+        <Button fx:id="viewHistoryReport" layoutX="29.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleViewHistoryReport" text="View History Report" />
+
+    </children>
+    <styleClass>
+        <String fx:value="label-header" />
+        <String fx:value="background" />
+    </styleClass>
+</Pane>
