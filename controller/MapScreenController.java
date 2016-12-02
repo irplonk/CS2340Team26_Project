@@ -9,30 +9,37 @@ import fxapp.MainFXApplication;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import model.*;
 
 import netscape.javascript.JSObject;
 
+import java.io.File;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import model.Report;
 
 /**
- * Controller for map screen
- * @author Sam Sok
- * @version 1.0
+ * Created by Sam on 10/16/2016.
  */
 public class MapScreenController implements Initializable, MapComponentInitializedListener{
-
-    private Window mainStage;
 
     @FXML
     private GoogleMapView mapView;
 
     private GoogleMap map;
+
+    private Window mainStage;
 
     private MainFXApplication mainApplication;
 
@@ -40,29 +47,17 @@ public class MapScreenController implements Initializable, MapComponentInitializ
 
     private ArrayList<Report> sourceReport;
 
-    /**
-     * Initialization information for the map
-     * @param url contains map data
-     * @param rb contains map resources
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         mapView.addMapInializedListener(this);
     }
 
-    /**
-     * Sets the stage and the MainFXApp
-     * @param stage the primary stage
-     * @param app the main application
-     */
     public void setCallbacks(Window stage, MainFXApplication app) {
         mainStage = stage;
         mainApplication = app;
     }
 
-    /**
-     * Initializes the map and loaded the markers to place onto the map
-     */
+
     @Override
     public void mapInitialized() {
         MapOptions options = new MapOptions();
@@ -82,28 +77,57 @@ public class MapScreenController implements Initializable, MapComponentInitializ
 
         map = mapView.createMap(options);
 
-        //Grabbing locations from water source reports submitted
-        for (Report l: sourceReport) {
-            MarkerOptions markerOptions = new MarkerOptions();
-            LatLong loc = new LatLong(l.getLatitude(), l.getLongitude());
+        try {
+            Connection connection = Database.getConnection();
 
-            markerOptions.position(loc)
-                    .visible(Boolean.TRUE)
-                    .title(l.getLocation());
+            Statement stmt = connection.createStatement();
 
-            Marker marker = new Marker(markerOptions);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM WaterReports WHERE type <> 'null'");
 
-            map.addUIEventHandler(marker,
-                    UIEventType.click,
-                    (JSObject obj) -> {
-                        InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-                        infoWindowOptions.content(l.getDescription());
+            //Grabbing locations from water source reports submitted
+            while (rs.next()) {
+                System.out.println("hi");
+                MarkerOptions markerOptions = new MarkerOptions();
+                LatLong loc = new LatLong(rs.getDouble("latitude"), rs.getDouble("longitude"));
 
-                        InfoWindow window = new InfoWindow(infoWindowOptions);
-                        window.open(map, marker);
-                    });
+                String location = rs.getString("location");
+                Date date = rs.getDate("date");
+                Integer id = rs.getInt("id");
+                Double latitude = rs.getDouble("latitude");
+                Double longitude = rs.getDouble("longitude");
 
-            map.addMarker(marker);
+                markerOptions.position(loc)
+                        .visible(Boolean.TRUE)
+                        .title(rs.getString("location"));
+
+                Marker marker = new Marker(markerOptions);
+
+                map.addUIEventHandler(marker,
+                        UIEventType.click,
+                        (JSObject obj) -> {
+                            InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+
+                            String description = "Marker " + location + "  Date Submitted: " + date
+                                    + "  " + "<h2>Report Number: " + id
+                                    + "</h2> <br> Source Report for " + location
+                                    + "<br> Reporter: " + User.id
+                                    + "<br> Location"
+                                    + "<br> Latitude: " + latitude
+                                    + "  " + "Longitude: " + longitude;
+
+                            infoWindowOptions.content(description);
+
+                            InfoWindow window = new InfoWindow(infoWindowOptions);
+                            window.open(map, marker);
+                        });
+
+                map.addMarker(marker);
+            }
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -121,18 +145,11 @@ public class MapScreenController implements Initializable, MapComponentInitializ
      */
     public void setWaterAvailabilityReportScreen(Stage mapStage) { mapWindow = mapStage; }
 
-    /**
-     * Closes the menu when the x button is clicked
-     */
     @FXML
     public void onCloseMenu() {
         mapWindow.close();
     }
 
-    /**
-     * A method to set the Water Source Reports to pull info for pins
-     * @param sourceReport the list containing the water source reports
-     */
     public void setSourceReport(ArrayList<Report> sourceReport) {
         this.sourceReport = sourceReport;
     }

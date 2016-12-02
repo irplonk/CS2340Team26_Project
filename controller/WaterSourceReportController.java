@@ -8,25 +8,24 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-import model.AuthorizedUser;
-import model.Report;
-import model.WaterCondition;
-import model.WaterSourceReport;
-import model.WaterType;
+import model.*;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
- * Controller for water source report
- * @author Isabella Plonk
- * @version 1.0
+ * Created by Isabella on 10/6/16.
  */
 public class WaterSourceReportController {
+    /** reference back to mainApplication if needed */
+    private MainFXApplication mainApplication;
 
     private Stage waterSourceReportStage;
-    private MainFXApplication mainFXApplication;
-
-    public static AuthorizedUser user;
 
     @FXML
     private TextField waterLocation;
@@ -38,16 +37,18 @@ public class WaterSourceReportController {
     private TextField longitude;
 
     @FXML
-    private final ComboBox<WaterType> waterType = new ComboBox<>();
+    private ComboBox<WaterType> waterType = new ComboBox<>();
 
     @FXML
-    private final ComboBox<WaterCondition> waterCondition = new ComboBox<>();
+    private ComboBox<WaterCondition> waterCondition = new ComboBox<>();
+
+    private Report report;
 
     private final ObservableList<WaterType> tList = FXCollections.observableArrayList();
 
     private final ObservableList<WaterCondition> cList = FXCollections.observableArrayList();
 
-    public static final ArrayList<Report> reportList = new ArrayList<>();
+    public static ArrayList<Report> reportList = new ArrayList<>();
 
     private WaterSourceReport sourceReport;
 
@@ -65,16 +66,18 @@ public class WaterSourceReportController {
     }
 
     /**
+     * Allow for calling back to the main application code if necessary
+     * @param main the reference to the FX Application instance
+     * */
+    public void setMainApp(MainFXApplication main) {
+        mainApplication = main;
+    }
+
+    /**
      * Sets up water source report screen stage
      * @param waterSourceReportStage sets the stage for this dialog
      */
     public void setWaterSourceReportStage(Stage waterSourceReportStage) {this.waterSourceReportStage = waterSourceReportStage;}
-
-    /**
-     * @param user sets the user
-     */
-    public void setUser(AuthorizedUser user) {
-        WaterSourceReportController.user = user;}
 
     /**
      * Called when user clicks cancel
@@ -88,19 +91,18 @@ public class WaterSourceReportController {
      * Called when user clicks create account
      */
     @FXML
-    public void handleSubmitReport() {
+    public void handleSubmitReport() throws SQLException, ClassNotFoundException {
         if (isInputValid()) {
-            Report report = new WaterSourceReport(user.getID(), waterLocation.getText(), Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), waterType.getValue(), waterCondition.getValue());
-            reportList.add(report);
+            Connection connection = Database.getConnection();
+
+            Statement stmt = connection.createStatement();
+
+            stmt.executeUpdate("INSERT INTO WaterReports VALUES (Null, CURRENT_TIMESTAMP, '"
+                    + Double.parseDouble(latitude.getText()) + "', '" + Double.parseDouble(longitude.getText()) +
+                    "', '" + waterLocation.getText() + "', '" + waterCondition.getValue() + "', '" +  waterType.getValue() + "', NULL, NULL)");
         }
         waterSourceReportStage.close();
     }
-
-    /**
-     * Sets the main application
-     * @param mainFXApplication the main application
-     */
-    public void setMainApp(MainFXApplication mainFXApplication) {this.mainFXApplication = mainFXApplication;}
 
     /**
      * Checks if the input is valid

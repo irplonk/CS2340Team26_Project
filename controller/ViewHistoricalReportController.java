@@ -1,8 +1,14 @@
 package controller;
 
 import fxapp.MainFXApplication;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -12,11 +18,12 @@ import model.WaterPurityReport;
 import java.util.ArrayList;
 
 /**
- * Controller for view historical report
- * @author Shivani Upadhayay
- * @version 1.0
+ * Created by Shivani Upadhayay on 11/1/2016.
  */
-class ViewHistoricalReportController {
+public class ViewHistoricalReportController {
+
+    /** a link back to the main application class */
+    private MainFXApplication mainApplication;
 
     private Stage viewHistoryReportStage;
 
@@ -26,8 +33,8 @@ class ViewHistoricalReportController {
 
     private ArrayList<WaterPurityReport> waterPurityReportList;
 
-    XYChart.Series<String, Double> virusPPM = new XYChart.Series<>();
-    XYChart.Series<String, Double> contaminantPPM = new XYChart.Series<>();
+    XYChart.Series<String, Double> virusPPM = new XYChart.Series<String, Double>();
+    XYChart.Series<String, Double> contaminantPPM = new XYChart.Series<String, Double>();
 
     /**
      * Setter method to add the month categories to line graph
@@ -49,12 +56,20 @@ class ViewHistoricalReportController {
     }
 
     /**
+     * Allow for calling back to the main application code if necessary
+     * @param main the reference to the FX Application instance
+     * */
+    public void setMainApp(MainFXApplication main) {
+        mainApplication = main;
+    }
+
+    /**
      * Sets up view report screen stage
-     * @param viewHistoryReportStage sets the stage for this dialog
+     * @param viewHistoryReportStage sets the strage for this dialog
      */
     public void setViewHistoryReportsStage(Stage viewHistoryReportStage) {
         this.viewHistoryReportStage = viewHistoryReportStage;
-    }
+    };
 
 
     /**
@@ -64,5 +79,4 @@ class ViewHistoricalReportController {
     public void handleCancel() {
         viewHistoryReportStage.close();
     }
-
 }

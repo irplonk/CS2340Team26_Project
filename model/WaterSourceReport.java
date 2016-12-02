@@ -1,12 +1,11 @@
 package model;
 
 /**
- * @author Isabella Plonk
- * @version 1.0
+ * Created by Isabella on 10/6/16.
  */
 public class WaterSourceReport extends Report {
-    private final WaterType waterType;
-    private final WaterCondition waterCondition;
+    private WaterType waterType;
+    private WaterCondition waterCondition;
 
     /**
      * Constructor for WaterSourceReport
@@ -25,7 +24,7 @@ public class WaterSourceReport extends Report {
      * Getter for water condition
      * @return water condition for WaterSourceReport
      */
-    private WaterCondition getWaterCondition() {
+    public WaterCondition getWaterCondition() {
         return waterCondition;
     }
 
@@ -33,11 +32,12 @@ public class WaterSourceReport extends Report {
      * Getter for water type
      * @return water condition for WaterSourceReport
      */
-    private WaterType getWaterType() {
+    public WaterType getWaterType() {
         return waterType;
     }
 
     /**
+     * @Override
      * @return a String representation of all WaterSourceReport values
      */
     public String toString() {
@@ -55,6 +55,6 @@ public class WaterSourceReport extends Report {
                 + "<br> Latitude: " + getLatitude()
                 + "  " + "Longitude: " + getLongitude()
                 + "<br> Water Type: " + getWaterType()
-                + "<br> Water Condition: " + getWaterCondition();
+                + "<br> Water Condition" + getWaterCondition();
     }
 }

@@ -4,19 +4,18 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
- * @author Isabella Plonk
- * @version 1.0
+ * Created by Isabella on 10/6/16.
  */
 public abstract class Report {
-    private final DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-    private final Date dateObj = new Date();
-    private final String date = df.format(dateObj);
-    private final String reportNumber;
+    private DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+    private Date dateObj = new Date();
+    private String date = df.format(dateObj);
+    private String reportNumber;
     private static int reportNum = -1;
-    private final String reporter;
-    private final String location;
-    private final double latitude;
-    private final double longitude;
+    private String reporter;
+    private String location;
+    private double latitude;
+    private double longitude;
 
     /**
      * Sets reporter name, location, and report number of Report
@@ -25,7 +24,7 @@ public abstract class Report {
      * @param reporter String representation of Report reporter
      * @param location String representation of Report location
      */
-    Report(String reporter, String location, double latitude, double longitude) {
+    public Report(String reporter, String location, double latitude, double longitude) {
         this.reporter = reporter;
         this.location = location;
         this.latitude = latitude;
@@ -34,15 +33,15 @@ public abstract class Report {
         this.reportNumber = Integer.toString(reportNum);
     }
 
-    String getDate() {
+    public String getDate() {
         return date;
     }
 
-    String getReportNumber() {
+    public String getReportNumber() {
         return reportNumber;
     }
 
-    String getReporter() {
+    public String getReporter() {
         return reporter;
     }
 
