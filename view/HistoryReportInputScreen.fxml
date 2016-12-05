@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoryReportInputController">
-    <children>
-        <Text layoutX="102.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Info for History Report">
-            <font>
-                <Font size="33.0" />
-            </font>
-        </Text>
-        <Text layoutX="42.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latitude:" wrappingWidth="88.205078125">
-            <font>
-                <Font size="23.0" />
-            </font>
-        </Text>
-        <Text layoutX="41.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location:" wrappingWidth="112.205078125">
-            <font>
-                <Font size="23.0" />
-            </font>
-        </Text>
-        <Text layoutX="38.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude:" wrappingWidth="119.205078125">
-            <font>
-                <Font size="23.0" />
-            </font>
-        </Text>
-        <TextField fx:id="latitude" layoutX="188.0" layoutY="69.0" />
-        <TextField fx:id="longitude" layoutX="188.0" layoutY="127.0" />
-        <TextField fx:id="location" layoutX="188.0" layoutY="184.0" />
-        <Text layoutX="42.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PPM Level:" wrappingWidth="112.205078125">
-            <font>
-                <Font size="23.0" />
-            </font>
-        </Text>
-        <ComboBox fx:id="ppm" layoutX="188.0" layoutY="286.0" prefHeight="39.0" prefWidth="224.0" />
-        <Button fx:id="viewHistoryReport" layoutX="171.0" layoutY="352.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="257.0" text="View History Report">
-            <font>
-                <Font size="23.0" />
-            </font>
-        </Button>
-        <Text layoutX="41.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" wrappingWidth="112.205078125">
-            <font>
-                <Font size="23.0" />
-            </font>
-        </Text>
-        <TextField fx:id="year" layoutX="188.0" layoutY="231.0" />
-    </children>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.HistoryReportInputController">
+    <Text layoutX="102.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Info for History Report">
+        <font>
+            <Font size="33.0"/>
+        </font>
+    </Text>
+    <Text layoutX="42.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latitude:"
+          wrappingWidth="88.205078125">
+        <font>
+            <Font size="23.0"/>
+        </font>
+    </Text>
+    <Text layoutX="41.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location:"
+          wrappingWidth="112.205078125">
+        <font>
+            <Font size="23.0"/>
+        </font>
+    </Text>
+    <Text layoutX="38.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude:"
+          wrappingWidth="119.205078125">
+        <font>
+            <Font size="23.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="latitude" layoutX="188.0" layoutY="69.0"/>
+    <TextField fx:id="longitude" layoutX="188.0" layoutY="127.0"/>
+    <TextField fx:id="location" layoutX="188.0" layoutY="184.0"/>
+    <Text layoutX="42.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PPM Level:"
+          wrappingWidth="112.205078125">
+        <font>
+            <Font size="23.0"/>
+        </font>
+    </Text>
+    <ComboBox fx:id="ppm" layoutX="188.0" layoutY="286.0" prefHeight="39.0" prefWidth="224.0"/>
+    <Button fx:id="viewHistoryReport" layoutX="171.0" layoutY="352.0" mnemonicParsing="false" prefHeight="50.0"
+            prefWidth="257.0" text="View History Report">
+        <font>
+            <Font size="23.0"/>
+        </font>
+    </Button>
+    <Text layoutX="41.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:"
+          wrappingWidth="112.205078125">
+        <font>
+          <Font size="23.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="year" layoutX="188.0" layoutY="231.0"/>
 </Pane>

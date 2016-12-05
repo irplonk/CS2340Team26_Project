@@ -4,11 +4,8 @@ import fxapp.MainFXApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import model.*;
 
 import java.sql.Connection;
@@ -36,19 +33,19 @@ public class RegistrationScreenController {
     private Button createAccount;
 
     @FXML
-    private TextField lastName;
-
-    @FXML
-    private TextField firstName;
+    private TextField name;
 
     @FXML
     private TextField userID;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private ComboBox<UserType> userType = new ComboBox<>();
+
+    @FXML
+    private final TextField confirmPass = new TextField();
 
     private final ObservableList<UserType> list = FXCollections.observableArrayList();
 
@@ -63,6 +60,11 @@ public class RegistrationScreenController {
     private void initialize() {
         list.addAll(UserType.values());
         userType.setItems(list);
+        name.setText("Default");
+        userID.setText("user");
+        password.setText("pass");
+        confirmPass.setText("pass");
+        userType.setValue(list.get(0));
     }
 
 
@@ -103,8 +105,9 @@ public class RegistrationScreenController {
 
             if(!rs.isBeforeFirst()) {
                 stmt.executeUpdate("INSERT INTO Users VALUES ('"
-                        + userID.getText() + "', '" + firstName.getText() +
-                        "', '" + lastName.getText() + "', '" + password.getText() + "', '" + userType.getValue() + "', NULL, NULL, NULL)");
+                        + userID.getText() + "', '" + name.getText() +
+                        "', '" + name.getText() + "', '" + password.getText() + "', '" + userType.getValue() + "', NULL, NULL, NULL)");
+                TwitterStatusUpdate.update("Let us welcome our new " + userType.getValue() + ", " + name.getText() + "!");
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.initOwner(registrationStage);
@@ -135,11 +138,8 @@ public class RegistrationScreenController {
         if (password.getText() == null || password.getText().length() == 0) {
             errorMessage += "Not a valid password!\n";
         }
-        if (lastName.getText() == null || lastName.getText().length() == 0) {
-            errorMessage += "Not a valid last name!\n";
-        }
-        if (firstName.getText() == null || firstName.getText().length() == 0) {
-            errorMessage += "Not a valid first name!\n";
+        if (name.getText() == null || name.getText().length() == 0) {
+            errorMessage += "Not a valid name!\n";
         }
         if (userType.getValue() == null) {
             errorMessage += "Not a valid user type!\n";

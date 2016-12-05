@@ -31,8 +31,8 @@ public class ViewPurityReportController {
      */
     @FXML
     private void initialize() {
-        items.addAll(WaterPurityReportController.reportList);
-        list.setItems(items);
+        //items.addAll(WaterPurityReportController.reportList);
+        //list.setItems(items);
     }
 
     /**

@@ -80,10 +80,10 @@ public class LoginScreenController {
                     + password.getText() + "'");
 
             if (rs.next()) {
-                loginStage.close();
                 User.id = userID.getText();
                 User.type = rs.getString("usertype");
                 mainApplication.showWelcomeScreen();
+                loginStage.close();
                 isClicked = true;
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -94,6 +94,14 @@ public class LoginScreenController {
 
             connection.close();
         }
+    }
+
+    /**
+     * Called when the user clicks 'forgot password'.
+     */
+    @FXML
+    private void handleForgot() {
+        mainApplication.showPasswordRecoveryScreen();
     }
 
     /**

@@ -378,6 +378,68 @@ public class MainFXApplication extends Application {
     }
 
     /**
+     * Display password recovery screen
+     */
+    public void showPasswordRecoveryScreen() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/PasswordRecoveryScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Password Recovery");
+            //dialogStage.initModality(Modality.WINDOW_MODAL);
+            //dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the stage into the controller.
+            PasswordRecoveryController controller = loader.getController();
+            //controller.setWaterAvailabilityReportScreen(dialogStage);
+            controller.setMainApp(this);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Display password reset screen
+     */
+    public void showPasswordResetScreen(String code) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainFXApplication.class.getResource("../view/PasswordResetScreen.fxml"));
+            Pane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Password recovery");
+            //dialogStage.initModality(Modality.WINDOW_MODAL);
+            //dialogStage.initOwner(mainScreen);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the stage into the controller.
+            PasswordResetController controller = loader.getController();
+            controller.setCode(code);
+            controller.setMainApp(this);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Displays the water purity report screen
      */
     public void showViewHistoryReportInputScreen() {
