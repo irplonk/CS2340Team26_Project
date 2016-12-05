@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/Most Recent Database Branch/lib/GMapsFX-2.0.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Most Recent Database Branch/lib/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Most Recent Database Branch/lib/mysql-connector-java-5.1.40-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Most Recent Database Branch/lib/gson-2.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

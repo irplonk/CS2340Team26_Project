@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        flatDir {
+            dirs 'lib/'
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'com.lynden', name: 'GMapsFX', version: '2.0.9'
+        classpath group: 'org.google.code.gson', name: 'Gson', version: '2.7'
+        //classpath group: 'javax.mail', name: 'JavaMail', version: '5.1.40'
+    }
+}
+
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+    id "org.gradle.java"
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+
+
+defaultTasks  'clean', 'jar', 'run'
+
+mainClassName = "fxapp.MainFXApplication"
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'fxapp.MainFXApplication'
+    }
+}
+dependencies {
+    repositories {
+        flatDir {
+            dirs 'lib/'
+        }
+        mavenCentral()
+    }
+    compile group: 'com.lynden', name: 'GMapsFX', version: '2.0.9'
+    compile group: 'org.google.code.gson', name: 'Gson', version: '2.7'
+    testCompile "junit:junit:4.12"
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/java"]
+            includes = ["**/*.fxml"]
+        }
+    }
+}
